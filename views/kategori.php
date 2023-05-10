@@ -39,7 +39,7 @@ $_SESSION["page-url"] = "kategori";
                   </ul>
                   <div>
                     <div class="btn-wrapper">
-                      <a href="#" class="btn btn-primary text-white me-0" data-bs-toggle="modal" data-bs-target="#tambah"><i class="mdi mdi-plus"></i> Tambah</a>
+                      <a href="#" class="btn btn-primary text-white me-0 rounded-0" data-bs-toggle="modal" data-bs-target="#tambah"><i class="mdi mdi-plus"></i> Tambah</a>
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,20 @@
 <?php require_once("../controller/script.php"); ?>
 
 <div class="row">
+
+  <!-- Tab panes -->
+  <div class="col-md-12 mt-3">
+    <h2>PENERIMA BLT Desa Oesoko</h2>
+    <div class="col-10">
+      <div class="card border-0 rounded-0">
+        <div class="card-body">
+          <h3>Pengelompokan Topik Skripsi Mahasiswa Ilmu Komputer UNWIRA (Metode Naive Bayes Classifier)</h3>
+          <p>Sistem ini bertujuan untuk mengelompokan topik skripsi berdasarkan abstrak dengan menggunakan Metode Naive Bayes Classifier. Dengan adanya aplikasi ini diharapkan mampu membantu pegawai dan mahasiswa dalam pengarsipan dan pengelompokan skripsi, sehingga mahasiswa tidak kesulitan dalam mencari rujukan dan referensi yang terkait dengan penelitiannya.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script src="../assets/datatable/datatables.js"></script>

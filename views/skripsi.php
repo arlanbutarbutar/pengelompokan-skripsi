@@ -39,7 +39,7 @@ $_SESSION["page-url"] = "skripsi";
                   </ul>
                   <div>
                     <div class="btn-wrapper">
-                      <a href="#" class="btn btn-primary text-white me-0" data-bs-toggle="modal" data-bs-target="#tambah"><i class="mdi mdi-plus"></i> Tambah</a>
+                      <a href="#" class="btn btn-primary text-white me-0 rounded-0" data-bs-toggle="modal" data-bs-target="#tambah"><i class="mdi mdi-plus"></i> Tambah</a>
                     </div>
                   </div>
                 </div>
@@ -49,11 +49,14 @@ $_SESSION["page-url"] = "skripsi";
                       <thead>
                         <tr>
                           <th scope="col" class="text-center">#</th>
-                          <th scope="col" class="text-center">Nama Mahasiswa</th>
+                          <th scope="col" class="text-center">NIM</th>
+                          <th scope="col" class="text-center">Nama</th>
                           <th scope="col" class="text-center">Judul</th>
                           <th scope="col" class="text-center">Abstrak</th>
-                          <th scope="col" class="text-center">Pembimbing</th>
-                          <th scope="col" class="text-center">Penguji</th>
+                          <th scope="col" class="text-center">Pembimbing 1</th>
+                          <th scope="col" class="text-center">Pembimbing 2</th>
+                          <th scope="col" class="text-center">Penguji 1</th>
+                          <th scope="col" class="text-center">Penguji 2</th>
                           <th scope="col" class="text-center">Tahun</th>
                           <th scope="col" class="text-center">Aksi</th>
                         </tr>
@@ -64,11 +67,31 @@ $_SESSION["page-url"] = "skripsi";
                           while ($row = mysqli_fetch_assoc($data_skripsi)) { ?>
                             <tr>
                               <th scope="row"><?= $no; ?></th>
+                              <td><?= $row["nim"] ?></td>
                               <td><?= $row["nama_mahasiswa"] ?></td>
                               <td><?= $row["judul"] ?></td>
-                              <td><?= $row["abstrak"] ?></td>
-                              <td><?= $row["pembimbing"] ?></td>
-                              <td><?= $row["penguji"] ?></td>
+                              <td>
+                                <button type="button" class="btn btn-primary btn-sm text-white rounded-0 border-0" style="height: 30px;" data-bs-toggle="modal" data-bs-target="#abstrak<?= $row["id_skripsi"] ?>">
+                                  <i class="mdi mdi-eye"></i> Lihat
+                                </button>
+                                <div class="modal fade" id="abstrak<?= $row["id_skripsi"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                      <div class="modal-header border-bottom-0 shadow">
+                                        <h5 class="modal-title" id="exampleModalLabel">Abstrak <?= $row["nama_mahasiswa"] ?></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body text-center">
+                                        <textarea class="form-control border-0 rounded-0 p-0" id="exampleFormControlTextarea1" style="height: 300px;line-height: 20px;" rows="3"><?= $row['abstrak'] ?></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td><?= $row["pembimbing_satu"] ?></td>
+                              <td><?= $row["pembimbing_dua"] ?></td>
+                              <td><?= $row["penguji_satu"] ?></td>
+                              <td><?= $row["penguji_dua"] ?></td>
                               <td><?= $row["tahun"] ?></td>
                               <td class="d-flex justify-content-center">
                                 <div class="col">
@@ -76,7 +99,7 @@ $_SESSION["page-url"] = "skripsi";
                                     <i class="bi bi-pencil-square"></i>
                                   </button>
                                   <div class="modal fade" id="ubah<?= $row["id_skripsi"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-lg">
                                       <div class="modal-content">
                                         <div class="modal-header border-bottom-0 shadow">
                                           <h5 class="modal-title" id="exampleModalLabel">Ubah data <?= $row["nama_mahasiswa"] ?></h5>
@@ -85,33 +108,45 @@ $_SESSION["page-url"] = "skripsi";
                                         <form action="" method="POST">
                                           <div class="modal-body text-center">
                                             <div class="mb-3">
-                                              <label for="nama" class="form-label">Nama Mahasiswa <small class="text-danger">*</small></label>
-                                              <input type="text" name="nama" value="<?= $row['nama_mahasiswa']?>" class="form-control text-center" id="nama" minlength="3" placeholder="Nama Mahasiswa" required>
+                                              <label for="nim" class="form-label">NIM <small class="text-danger">*</small></label>
+                                              <input type="number" name="nim" value="<?= $row['nim'] ?>" class="form-control text-center" id="nim" min="8" placeholder="NIM" required>
+                                            </div>
+                                            <div class="mb-3">
+                                              <label for="nama" class="form-label">Nama <small class="text-danger">*</small></label>
+                                              <input type="text" name="nama" value="<?= $row['nama_mahasiswa'] ?>" class="form-control text-center" id="nama" minlength="3" placeholder="Nama" required>
                                             </div>
                                             <div class="mb-3">
                                               <label for="judul" class="form-label">Judul <small class="text-danger">*</small></label>
-                                              <input type="text" name="judul" value="<?= $row['judul']?>" class="form-control text-center" id="judul" placeholder="Judul" required>
+                                              <input type="text" name="judul" value="<?= $row['judul'] ?>" class="form-control text-center" id="judul" placeholder="Judul" required>
                                             </div>
                                             <div class="mb-3">
                                               <label for="abstrak" class="form-label">Abstrak <small class="text-danger">*</small></label>
-                                              <textarea name="abstrak" value="<?= $row['abstrak']?>" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                              <textarea name="abstrak" style="height: 200px;line-height: 20px;" class="form-control" id="exampleFormControlTextarea1" rows="3" required><?= $row['abstrak'] ?></textarea>
                                             </div>
                                             <div class="mb-3">
-                                              <label for="pembimbing" class="form-label">Pembimbing <small class="text-danger">*</small></label>
-                                              <input type="text" name="pembimbing" value="<?= $row['pembimbing']?>" class="form-control text-center" id="pembimbing" placeholder="Pembimbing" required>
+                                              <label for="pembimbing_satu" class="form-label">Pembimbing 1 <small class="text-danger">*</small></label>
+                                              <input type="text" name="pembimbing_satu" value="<?= $row['pembimbing_satu'] ?>" class="form-control text-center" id="pembimbing_satu" placeholder="Pembimbing 1" required>
                                             </div>
                                             <div class="mb-3">
-                                              <label for="penguji" class="form-label">Penguji <small class="text-danger">*</small></label>
-                                              <input type="text" name="penguji" value="<?= $row['penguji']?>" class="form-control text-center" id="penguji" placeholder="Penguji" required>
+                                              <label for="pembimbing_dua" class="form-label">Pembimbing 2 <small class="text-danger">*</small></label>
+                                              <input type="text" name="pembimbing_dua" value="<?= $row['pembimbing_dua'] ?>" class="form-control text-center" id="pembimbing_dua" placeholder="Pembimbing 2" required>
                                             </div>
                                             <div class="mb-3">
-                                              <label for="tahun" class="form-label">Tahun <small class="text-danger">*</small></label>
-                                              <input type="number" name="tahun" value="<?= $row['tahun']?>" class="form-control text-center" id="tahun" placeholder="Tahun" required>
+                                              <label for="penguji_satu" class="form-label">Penguji 1 <small class="text-danger">*</small></label>
+                                              <input type="text" name="penguji_satu" value="<?= $row['penguji_satu'] ?>" class="form-control text-center" id="penguji_satu" placeholder="Penguji 1" required>
+                                            </div>
+                                            <div class="mb-3">
+                                              <label for="penguji_dua" class="form-label">Penguji 2 <small class="text-danger">*</small></label>
+                                              <input type="text" name="penguji_dua" value="<?= $row['penguji_dua'] ?>" class="form-control text-center" id="penguji_dua" placeholder="Penguji 2" required>
+                                            </div>
+                                            <div class="mb-3">
+                                              <label for="tahun" class="form-label">Tahun Lulus <small class="text-danger">*</small></label>
+                                              <input type="number" name="tahun" value="<?= $row['tahun'] ?>" class="form-control text-center" id="tahun" placeholder="Tahun Lulus" required>
                                             </div>
                                           </div>
                                           <div class="modal-footer justify-content-center border-top-0">
-                                            <input type="hidden" name="id-skripsi" value="<?= $row["id_skripsi"] ?>">
-                                            <input type="hidden" name="namaOld" value="<?= $row["nama_mahasiswa"] ?>">
+                                            <input type="hidden" name="id_skripsi" value="<?= $row["id_skripsi"] ?>">
+                                            <input type="hidden" name="nimOld" value="<?= $row["nim"] ?>">
                                             <button type="button" class="btn btn-secondary btn-sm rounded-0 border-0" style="height: 30px;" data-bs-dismiss="modal">Batal</button>
                                             <button type="submit" name="ubah-skripsi" class="btn btn-warning btn-sm rounded-0 border-0" style="height: 30px;">Ubah</button>
                                           </div>
@@ -137,7 +172,7 @@ $_SESSION["page-url"] = "skripsi";
                                         <div class="modal-footer justify-content-center border-top-0">
                                           <button type="button" class="btn btn-secondary btn-sm rounded-0 border-0" style="height: 30px;" data-bs-dismiss="modal">Batal</button>
                                           <form action="" method="POST">
-                                            <input type="hidden" name="id-skripsi" value="<?= $row["id_skripsi"] ?>">
+                                            <input type="hidden" name="id_skripsi" value="<?= $row["id_skripsi"] ?>">
                                             <button type="submit" name="hapus-skripsi" class="btn btn-danger btn-sm rounded-0 text-white border-0" style="height: 30px;">Hapus</button>
                                           </form>
                                         </div>
@@ -169,8 +204,12 @@ $_SESSION["page-url"] = "skripsi";
               <form action="" method="post">
                 <div class="modal-body text-center">
                   <div class="mb-3">
-                    <label for="nama" class="form-label">Nama Mahasiswa <small class="text-danger">*</small></label>
-                    <input type="text" name="nama" class="form-control text-center" id="nama" minlength="3" placeholder="Nama Mahasiswa" required>
+                    <label for="nim" class="form-label">NIM <small class="text-danger">*</small></label>
+                    <input type="number" name="nim" class="form-control text-center" id="nim" min="8" placeholder="NIM" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="nama" class="form-label">Nama <small class="text-danger">*</small></label>
+                    <input type="text" name="nama" class="form-control text-center" id="nama" minlength="3" placeholder="Nama" required>
                   </div>
                   <div class="mb-3">
                     <label for="judul" class="form-label">Judul <small class="text-danger">*</small></label>
@@ -178,24 +217,32 @@ $_SESSION["page-url"] = "skripsi";
                   </div>
                   <div class="mb-3">
                     <label for="abstrak" class="form-label">Abstrak <small class="text-danger">*</small></label>
-                    <textarea name="abstrak" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    <textarea name="abstrak" class="form-control" id="exampleFormControlTextarea1" placeholder="Abstrak" style="height: 100px;" rows="3" required></textarea>
                   </div>
                   <div class="mb-3">
-                    <label for="pembimbing" class="form-label">Pembimbing <small class="text-danger">*</small></label>
-                    <input type="text" name="pembimbing" class="form-control text-center" id="pembimbing" placeholder="Pembimbing" required>
+                    <label for="pembimbing_satu" class="form-label">Pembimbing 1 <small class="text-danger">*</small></label>
+                    <input type="text" name="pembimbing_satu" class="form-control text-center" id="pembimbing_satu" placeholder="Pembimbing 1" required>
                   </div>
                   <div class="mb-3">
-                    <label for="penguji" class="form-label">Penguji <small class="text-danger">*</small></label>
-                    <input type="text" name="penguji" class="form-control text-center" id="penguji" placeholder="Penguji" required>
+                    <label for="pembimbing_dua" class="form-label">Pembimbing 2 <small class="text-danger">*</small></label>
+                    <input type="text" name="pembimbing_dua" class="form-control text-center" id="pembimbing_dua" placeholder="Pembimbing 2" required>
                   </div>
                   <div class="mb-3">
-                    <label for="tahun" class="form-label">Tahun <small class="text-danger">*</small></label>
-                    <input type="number" name="tahun" class="form-control text-center" id="tahun" placeholder="Tahun" required>
+                    <label for="penguji_satu" class="form-label">Penguji 1 <small class="text-danger">*</small></label>
+                    <input type="text" name="penguji_satu" class="form-control text-center" id="penguji_satu" placeholder="Penguji 1" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="penguji_dua" class="form-label">Penguji 2 <small class="text-danger">*</small></label>
+                    <input type="text" name="penguji_dua" class="form-control text-center" id="penguji_dua" placeholder="Penguji 2" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="tahun" class="form-label">Tahun Lulus <small class="text-danger">*</small></label>
+                    <input type="number" name="tahun" min="2001" max="2035" step="1" value="<?= date('Y') ?>" class="form-control text-center" id="tahun" placeholder="Tahun Lulus" required>
                   </div>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center">
-                  <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Batal</button>
-                  <button type="submit" name="tambah-skripsi" class="btn btn-primary btn-sm rounded-0">Simpan</button>
+                  <button type="button" class="btn btn-secondary btn-sm rounded-0 shadow" data-bs-dismiss="modal">Batal</button>
+                  <button type="submit" name="tambah-skripsi" class="btn btn-primary btn-sm rounded-0 border-0">Simpan</button>
                 </div>
               </form>
             </div>

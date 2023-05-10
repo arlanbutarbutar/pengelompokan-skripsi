@@ -32,18 +32,6 @@
         <span class="menu-title">Klasifikasi</span>
       </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='perhitungan'">
-        <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
-        <span class="menu-title">Perhitungan</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='hasil'">
-        <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
-        <span class="menu-title">Hasil</span>
-      </a>
-    </li>
     <li class="nav-item nav-category"></li>
     <li class="nav-item">
       <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='icons'">
