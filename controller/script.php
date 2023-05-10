@@ -128,16 +128,19 @@ if (isset($_SESSION["data-user"])) {
   }
 
   $mahasiswaSkripsi = mysqli_query($conn, "SELECT MIN(`id_skripsi`) AS `id_skripsi`, `nim`, `nama_mahasiswa`, `judul`, `abstrak`, `pembimbing_satu`, `pembimbing_dua`, `penguji_satu`, `penguji_dua`, `tahun` FROM `data_skripsi` GROUP BY `tahun`");
+  $kategoriData = mysqli_query($conn, "SELECT * FROM kategori");
   if (isset($_POST['seleksi'])) {
     $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['tahun']))));
-    $_SESSION['data-klasifikasi'] = ['tahun' => $tahun];
+    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['kategori']))));
+    $_SESSION['data-klasifikasi'] = ['tahun' => $tahun, 'kategori' => $kategori];
     header("Location: klasifikasi?to=dataset");
     exit();
   }
 
-  if(isset($_SESSION['data-klasifikasi'])){
-    $tahun=htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['tahun']))));
-    $dataset = mysqli_query($conn, "SELECT * FROM data_skripsi WHERE tahun='$tahun'");
+  if (isset($_SESSION['data-klasifikasi'])) {
+    $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['tahun']))));
+    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['kategori']))));
+    $dataset = mysqli_query($conn, "SELECT * FROM data_skripsi WHERE tahun='$tahun' AND kategori='$kategori'");
   }
 
   $klasifikasi = mysqli_query($conn, "SELECT * FROM klasifikasi JOIN seleksi ON klasifikasi.id_seleksi=seleksi.id_seleksi JOIN data_skripsi ON seleksi.id_skripsi=data_skripsi.id_skripsi");

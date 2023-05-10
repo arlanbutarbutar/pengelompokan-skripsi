@@ -70,15 +70,9 @@ $_SESSION["page-url"] = "perhitungan";
                                 </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='klasifikasi?to=performance'">
+                                <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='klasifikasi?to=klasifikasi'">
                                   <i class="mdi mdi-subdirectory-arrow-right menu-icon text-dark"></i>
-                                  <span class="menu-title text-dark">Performance</span>
-                                </a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='klasifikasi?to=prediksi'">
-                                  <i class="mdi mdi-subdirectory-arrow-right menu-icon text-dark"></i>
-                                  <span class="menu-title text-dark">Prediksi</span>
+                                  <span class="menu-title text-dark">Klasifikasi</span>
                                 </a>
                               </li>
                             </ul>
@@ -93,13 +87,22 @@ $_SESSION["page-url"] = "perhitungan";
                             <div class="row mt-3">
                               <div class="col-lg-6 m-auto">
                                 <h4 class="text-center">Seleksi Data Mahasiswa</h4>
-                                <form action="" method="post">
-                                  <div class="mb-3 text-center mt-5">
+                                <form action="" method="post" class="mt-5">
+                                  <div class="mb-3 text-center">
                                     <label for="tahun" class="form-label">Tahun Lulusan</label>
                                     <select name="tahun" class="form-select" aria-label="Default select example" required>
                                       <option selected value="">Pilih Tahun</option>
                                       <?php foreach ($mahasiswaSkripsi as $row1) : ?>
                                         <option value="<?= $row1['tahun'] ?>"><?= $row1['tahun'] ?></option>
+                                      <?php endforeach ?>
+                                    </select>
+                                  </div>
+                                  <div class="mb-3 text-center">
+                                    <label for="kategori" class="form-label">Kategori</label>
+                                    <select name="kategori" class="form-select" aria-label="Default select example" required>
+                                      <option selected value="">Pilih Kategori</option>
+                                      <?php foreach ($kategoriData as $row2) : ?>
+                                        <option value="<?= $row2['kategori'] ?>"><?= $row2['kategori'] ?></option>
                                       <?php endforeach ?>
                                     </select>
                                   </div>
@@ -143,12 +146,13 @@ $_SESSION["page-url"] = "perhitungan";
                             if ($_GET['to'] == 'initial-process') { ?>
                               <h4>Initial Process</h4>
                               <hr>
-
                               <?php
                               if (isset($_SESSION['data-klasifikasi'])) {
                                 $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['tahun']))));
+                                $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['kategori']))));
+
                                 // Load data latih
-                                $training = "SELECT abstrak, kategori FROM data_skripsi WHERE tahun='$tahun'";
+                                $training = "SELECT abstrak, kategori FROM data_skripsi WHERE tahun='$tahun' AND kategori='$kategori'";
                                 $training_result = $conn->query($training);
 
                                 // Data training
@@ -178,19 +182,129 @@ $_SESSION["page-url"] = "perhitungan";
                                 }
                                 echo '</table>';
                               }
-                              ?>
-
-                            <?php }
-                            if ($_GET['to'] == 'performance') { ?>
-                              <h4>Performance</h4>
+                            }
+                            if ($_GET['to'] == 'klasifikasi') { ?>
+                              <h4>Klasifikasi</h4>
                               <hr>
+                          <?php
+                              if (isset($_SESSION['data-klasifikasi'])) {
+                                $tahun_search = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['tahun']))));
+                                $category_search = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['kategori']))));
 
+                                // Mengambil data dari tabel skripsi
+                                $training = "SELECT abstrak, kategori FROM data_skripsi WHERE tahun='$tahun_search' AND kategori='$kategori'";
+                                $training_result = $conn->query($training);
 
-                            <?php }
-                            if ($_GET['to'] == 'prediksi') { ?>
-                              <h4>Prediksi</h4>
-                              <hr>
-                          <?php }
+                                // Data training
+                                $training_data = array();
+                                if ($training_result->num_rows > 0) {
+                                  while ($training_row = $training_result->fetch_assoc()) {
+                                    $training_data[] = array(
+                                      'abstrak' => $training_row['abstrak'], 
+                                      'category' => $$training_row['kategori']
+                                    );
+                                  }
+                                }
+
+                                // Kategori yang akan diklasifikasikan
+                                $category_to_classify = $category_search;
+
+                                // Hitung jumlah data training pada setiap kategori
+                                $category_counts = array();
+                                foreach ($training_data as $data) {
+                                  $category = $data['category'];
+                                  if (isset($category_counts[$category])) {
+                                    $category_counts[$category]++;
+                                  } else {
+                                    $category_counts[$category] = 1;
+                                  }
+                                }
+
+                                // Hitung jumlah data training total
+                                $training_count = count($training_data);
+
+                                // Hitung probabilitas setiap kategori
+                                $category_probabilities = array();
+                                foreach ($category_counts as $category => $count) {
+                                  $category_probabilities[$category] = $count / $training_count;
+                                }
+
+                                // Hitung kemunculan setiap kata pada setiap kategori
+                                $word_counts = array();
+                                foreach ($training_data as $data) {
+                                  $category = $data['category'];
+                                  $words = explode(' ', strtolower($data['abstrak']));
+                                  foreach ($words as $word) {
+                                    if (!isset($word_counts[$category][$word])) {
+                                      $word_counts[$category][$word] = 1;
+                                    } else {
+                                      $word_counts[$category][$word]++;
+                                    }
+                                  }
+                                }
+
+                                // Hitung probabilitas setiap kata pada setiap kategori
+                                $word_probabilities = array();
+                                foreach ($word_counts as $category => $words) {
+                                  $total_words = array_sum($words);
+                                  foreach ($words as $word => $count) {
+                                    $word_probabilities[$category][$word] = $count / $total_words;
+                                  }
+                                }
+
+                                // Mengambil data dari tabel skripsi
+                                $testing = "SELECT * FROM data_skripsi";
+                                $testing_result = $conn->query($testing);
+
+                                // Data testing
+                                $testing_data = array();
+                                if ($testing_result->num_rows > 0) {
+                                  while ($testing_row = $testing_result->fetch_assoc()) {
+                                    $testing_data[] = array(
+                                      'abstrak' => $testing_row['abstrak'],
+                                      'category' => $testing_row['kategori']
+                                    );
+                                  }
+                                }
+
+                                // Klasifikasi data testing
+                                foreach ($testing_data as $data) {
+                                  $max_probability = 0;
+                                  $predicted_category = '';
+                                  foreach ($category_probabilities as $category => $category_probability) {
+                                    $words = explode(' ', strtolower($data['abstrak']));
+                                    $probability = $category_probability;
+                                    foreach ($words as $word) {
+                                      if (isset($word_probabilities[$category][$word])) {
+                                        $probability *= $word_probabilities[$category][$word];
+                                      }
+                                    }
+                                    if ($probability > $max_probability) {
+                                      $max_probability = $probability;
+                                      $predicted_category = $category;
+                                    }
+                                  }
+                                  $data['category'] = $predicted_category;
+                                }
+
+                                // Hitung akurasi
+                                $correct_count = 0;
+                                foreach ($testing_data as $data) {
+                                  if ($data['category'] === $category_to_classify) {
+                                    $correct_count++;
+                                  }
+                                }
+                                $accuracy = $correct_count / count($testing_data) * 100;
+
+                                // Tampilkan hasil klasifikasi dan akurasi
+                                echo "Hasil klasifikasi:<br>";
+                                foreach ($testing_data as $data) {
+                                  echo "<strong>Abstrak</strong>: <br>" . $data['abstrak'] . "<br>";
+                                  echo "<strong>Predicted category</strong>: " . $data['category'] . "<br><br>";
+                                }
+                                echo "<strong>Akurasi</strong>: " . $accuracy . "%<br>";
+                              }
+                            }
                           } ?>
                         </div>
                       </div>
