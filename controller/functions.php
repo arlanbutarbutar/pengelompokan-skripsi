@@ -1,5 +1,46 @@
 <?php
 if (!isset($_SESSION["data-user"])) {
+  function daftar($data)
+  {
+    global $conn;
+    $username = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['username']))));
+    $email = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['email']))));
+    $checkMail = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
+    if (mysqli_num_rows($checkMail) > 0) {
+      $_SESSION['message-danger'] = "Maaf, akun yang kamu masukan sudah terdaftar.";
+      $_SESSION['time-message'] = time();
+      return false;
+    }
+    $password = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['password']))));
+    $re_password = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['re-password']))));
+    if ($password != $re_password) {
+      $_SESSION['message-danger'] = "Maaf, kata sandi tidak sama.";
+      $_SESSION['time-message'] = time();
+      return false;
+    }
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    $en_user = crc32($email);
+    require("mail.php");
+    $to       = $email;
+    $subject  = 'Verifikasi Akun Pengelompokan Skripsi kamu sekarang!!';
+    $message  = "<!doctype html>
+      <html>
+        <head>
+          <meta name='viewport' content='width=device-width'>
+          <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+          <title>Verifikasi Akun</title>
+        </head>
+        <body>
+          <p>Selamat akun anda sudah terdaftar, tinggal satu langkah lagi anda sudah bisa menggunakan akun anda. Silakan verifikasi sekarang dengan mengklik tautan di bawah ini.</p>
+          <a href='http://127.0.0.1:1010/apps/pengelompokan-skripsi/auth/index?auth=" . $password . "&crypt=" . $en_user . "' target='_blank' style='background-color: #ffffff; border: solid 1px #000; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; text-transform: capitalize; border-color: #000; color: #000;'>Verifikasi Sekarang</a>
+        </body>
+      </html>";
+    smtp_mail($to, $subject, $message, '', '', 0, 0, true);
+
+    mysqli_query($conn, "INSERT INTO users(en_user,username,email,password) VALUES('$en_user','$username','$email','$password')");
+    return mysqli_affected_rows($conn);
+  }
   function masuk($data)
   {
     global $conn;

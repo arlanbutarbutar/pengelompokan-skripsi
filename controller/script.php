@@ -34,6 +34,14 @@ if (!isset($_SESSION["data-user"])) {
       exit();
     }
   }
+  if (isset($_POST['daftar'])) {
+    if (daftar($_POST) > 0) {
+      $_SESSION['message-success'] = "Akun telah terdaftar, silakan cek email anda untuk memverifikasi akun.";
+      $_SESSION['time-message'] = time();
+      header("Location: ./");
+      exit();
+    }
+  }
 }
 
 if (isset($_SESSION["data-user"])) {

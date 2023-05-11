@@ -328,7 +328,7 @@ $_SESSION["page-url"] = "perhitungan";
                                       <strong>Prediksi Kategori:</strong> <?= $data['category'] ?>
                                     </div>
                                     <div class="col-lg-6">
-                                      <strong>Dengan akurasi yang didapat</strong><br>
+                                      <strong>Akurasi yang didapat:</strong><br>
                                       <span class="badge badge-success mt-3 rounded-0" style="font-size: 45px;"><?= $accuracy ?>%</span>
                                     </div>
                                   </div>

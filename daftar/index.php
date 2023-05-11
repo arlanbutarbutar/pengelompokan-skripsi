@@ -3,17 +3,6 @@ if (isset($_SESSION["data-user"])) {
   header("Location: ../views/");
   exit();
 }
-
-if (isset($_GET['crypt'])) {
-  $crypt = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_GET['crypt']))));
-  $verify = mysqli_query($conn, "SELECT * FROM users WHERE en_user='$crypt'");
-  if (mysqli_num_rows($verify) > 0) {
-    mysqli_query($conn, "UPDATE users SET id_status='1' WHERE en_user='$crypt'");
-    $_SESSION['message-success'] = "Akun anda telah terverifikasi.";
-    $_SESSION['time-message'] = time();
-  }
-}
-
 $_SESSION["page-name"] = "Masuk";
 $_SESSION["page-url"] = "./";
 ?>
@@ -57,7 +46,6 @@ $_SESSION["page-url"] = "./";
                   <button type="submit" name="masuk" class="btn rounded-0 text-white" style="background-color: rgb(3, 164, 237);">Masuk</button>
                 </div>
               </form>
-              <p class="mt-3 d-flex justify-content-center" style="font-size: 14px;">Belum punya akun? <a href="daftar" class="nav-link p-0 font-weight-bold" style="color: #009688;"> Daftar</a></p>
               <p class="d-flex flex-nowrap justify-content-center mt-3">Kembali ke <a href="../" class="text-decoration-none" style="margin-left: 5px;">Beranda</a></p>
             </div>
           </div>

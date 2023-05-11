@@ -6,26 +6,30 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    <li class="nav-item nav-category">Kelola Pengguna</li>
-    <li class="nav-item">
-      <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='users'">
-        <i class="mdi mdi-account-multiple-outline menu-icon"></i>
-        <span class="menu-title">Users</span>
-      </a>
-    </li>
+    <?php if ($_SESSION['data-user']['role'] == 1) { ?>
+      <li class="nav-item nav-category">Kelola Pengguna</li>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='users'">
+          <i class="mdi mdi-account-multiple-outline menu-icon"></i>
+          <span class="menu-title">Users</span>
+        </a>
+      </li>
+    <?php } ?>
     <li class="nav-item nav-category">Data Skripsi</li>
-    <li class="nav-item">
-      <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='skripsi'">
-        <i class="mdi mdi-file menu-icon"></i>
-        <span class="menu-title">Skripsi</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='kategori'">
-        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-        <span class="menu-title">Kategori</span>
-      </a>
-    </li>
+    <?php if ($_SESSION['data-user']['role'] == 1) { ?>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='skripsi'">
+          <i class="mdi mdi-file menu-icon"></i>
+          <span class="menu-title">Skripsi</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='kategori'">
+          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          <span class="menu-title">Kategori</span>
+        </a>
+      </li>
+    <?php } ?>
     <li class="nav-item">
       <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='klasifikasi'">
         <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
