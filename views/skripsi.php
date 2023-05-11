@@ -143,6 +143,17 @@ $_SESSION["page-url"] = "skripsi";
                                               <label for="tahun" class="form-label">Tahun Lulus <small class="text-danger">*</small></label>
                                               <input type="number" name="tahun" value="<?= $row['tahun'] ?>" class="form-control text-center" id="tahun" placeholder="Tahun Lulus" required>
                                             </div>
+                                            <div class="mb-3 text-center">
+                                              <label for="kategori" class="form-label">Kategori</label>
+                                              <select name="kategori" class="form-select" aria-label="Default select example" required>
+                                                <option selected value="<?= $row['kategori'] ?>"><?= $row['kategori'] ?></option>
+                                                <?php $kategori=$row['kategori'];
+                                                $selectKategori=mysqli_query($conn, "SELECT * FROM kategori WHERE kategori!='$kategori'");
+                                                foreach ($selectKategori as $row3) : ?>
+                                                  <option value="<?= $row3['kategori'] ?>"><?= $row3['kategori'] ?></option>
+                                                <?php endforeach ?>
+                                              </select>
+                                            </div>
                                           </div>
                                           <div class="modal-footer justify-content-center border-top-0">
                                             <input type="hidden" name="id_skripsi" value="<?= $row["id_skripsi"] ?>">
@@ -238,6 +249,15 @@ $_SESSION["page-url"] = "skripsi";
                   <div class="mb-3">
                     <label for="tahun" class="form-label">Tahun Lulus <small class="text-danger">*</small></label>
                     <input type="number" name="tahun" min="2001" max="2035" step="1" value="<?= date('Y') ?>" class="form-control text-center" id="tahun" placeholder="Tahun Lulus" required>
+                  </div>
+                  <div class="mb-3 text-center">
+                    <label for="kategori" class="form-label">Kategori</label>
+                    <select name="kategori" class="form-select" aria-label="Default select example" required>
+                      <option selected value="">Pilih Kategori</option>
+                      <?php foreach ($kategoriData as $row2) : ?>
+                        <option value="<?= $row2['kategori'] ?>"><?= $row2['kategori'] ?></option>
+                      <?php endforeach ?>
+                    </select>
                   </div>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center">

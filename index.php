@@ -1,99 +1,83 @@
+<?php require_once("controller/script.php") ?>
+
 <!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pengelompokan Skripsi</title>
+<html>
 
-    <style type="text/css">
-      ::selection {
-        background-color: #e13300;
-        color: white;
-      }
-      ::-moz-selection {
-        background-color: #e13300;
-        color: white;
-      }
+<head>
+  <?php require_once("resources/header.php") ?>
+</head>
 
-      body {
-        background-color: #fff;
-        margin: 40px;
-        font: 13px/20px normal Helvetica, Arial, sans-serif;
-        color: #4f5155;
-      }
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <?php require_once("resources/navbar.php") ?>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 offset-md-1">
+            <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+                  01
+                </li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1">
+                  02
+                </li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2">
+                  03
+                </li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3">
+                  04
+                </li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="img-box b-1">
+                    <img src="assets/images/slider-1.png" style="margin-left: -50px;" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="carousel_btn-box">
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class=" col-md-5 offset-md-1">
+            <div class="detail-box">
+              <h2 style="font-size: 60px;">
+                Skripsi <br>
+                Ilmu Komputer
+              </h2>
+              <p>
+                Aplikasi Pengelompokan Skripsi
+              </p>
 
-      a {
-        color: #003399;
-        background-color: transparent;
-        font-weight: normal;
-      }
+              <div class="btn-box">
+                <a href="auth/" class="btn-1">
+                  Cari Skripsi
+                </a>
+                <a href="tentang" class="btn-2">
+                  Lebih Detail
+                </a>
+              </div>
 
-      h1 {
-        color: #444;
-        background-color: transparent;
-        border-bottom: 1px solid #d0d0d0;
-        font-size: 19px;
-        font-weight: normal;
-        margin: 0 0 14px 0;
-        padding: 14px 15px 10px 15px;
-      }
-
-      code {
-        font-family: Consolas, Monaco, Courier New, Courier, monospace;
-        font-size: 12px;
-        background-color: #f9f9f9;
-        border: 1px solid #d0d0d0;
-        color: #002166;
-        display: block;
-        margin: 14px 0 14px 0;
-        padding: 12px 10px 12px 10px;
-      }
-
-      #body {
-        margin: 0 15px 0 15px;
-      }
-
-      p.footer {
-        text-align: right;
-        font-size: 11px;
-        border-top: 1px solid #d0d0d0;
-        line-height: 32px;
-        padding: 0 10px 0 10px;
-        margin: 20px 0 0 0;
-      }
-
-      #container {
-        margin: 10px;
-        border: 1px solid #d0d0d0;
-        box-shadow: 0 0 8px #d0d0d0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="container">
-      <h1>Project Pengelompokan Skripsi</h1>
-
-      <div id="body">
-        <p>
-          Halaman yang Anda lihat dibuat secara dinamis oleh Netmedia Framecode.
-        </p>
-        <p>
-          Tampilan <strong>UI (User Interface)</strong> dan <strong>Console</strong> dapat anda ubah dengan melihat berbagai macam template dari vendor Netmedia Framecode
-        </p>
-        <code><i class="bi bi-list"></i>
-          <a href="https://www.free-css.com/free-css-templates" target="_blank" style="text-decoration: none;">Template UI</a>
-        </code>
-        <code><i class="bi bi-list"></i>
-          <a href="https://freshdesignweb.com/free-admin-templates/" target="_blank" style="text-decoration: none;">Template Console</a>
-        </code>
-        <p>
-          Jika anda ingin melanjutkan ke <strong>Console</strong> bisa klik link dibawah ini:
-        </p>
-        <code><i class="bi bi-list"></i>
-          <a href="auth/" style="text-decoration: none;">auth/</a>
-        </code>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </body>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <?php require_once("resources/footer.php") ?>
+
+</body>
+
 </html>

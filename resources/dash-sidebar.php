@@ -33,12 +33,12 @@
       </a>
     </li>
     <li class="nav-item nav-category"></li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='icons'">
         <i class="mdi mdi-face-profile menu-icon"></i>
         <span class="menu-title">Icons</span>
       </a>
-    </li>
+    </li> -->
     <li class="nav-item">
       <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='../auth/signout'">
         <i class="mdi mdi-logout-variant menu-icon"></i>

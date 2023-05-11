@@ -4,7 +4,7 @@
 
   <!-- Tab panes -->
   <div class="col-md-12 mt-3">
-    <h2>PENERIMA BLT Desa Oesoko</h2>
+    <h2>Pengelompokan Skripsi</h2>
     <div class="col-10">
       <div class="card border-0 rounded-0">
         <div class="card-body">

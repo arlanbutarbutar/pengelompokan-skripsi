@@ -92,6 +92,7 @@ if (isset($_SESSION["data-user"])) {
     $penguji_satu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['penguji_satu']))));
     $penguji_dua = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['penguji_dua']))));
     $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tahun']))));
+    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategori']))));
 
     $checkNIM = mysqli_query($conn, "SELECT * FROM data_skripsi WHERE nim='$nim'");
     if (mysqli_num_rows($checkNIM) > 0) {
@@ -100,7 +101,7 @@ if (isset($_SESSION["data-user"])) {
       return false;
     }
 
-    mysqli_query($conn, "INSERT INTO data_skripsi(nim,nama_mahasiswa,judul,abstrak,pembimbing_satu,pembimbing_dua,penguji_satu,penguji_dua,tahun) VALUES('$nim','$nama','$judul','$abstrak','$pembimbing_satu','$pembimbing_dua','$penguji_satu','$penguji_dua','$tahun')");
+    mysqli_query($conn, "INSERT INTO data_skripsi(nim,nama_mahasiswa,judul,abstrak,kategori,pembimbing_satu,pembimbing_dua,penguji_satu,penguji_dua,tahun) VALUES('$nim','$nama','$judul','$abstrak','$kategori','$pembimbing_satu','$pembimbing_dua','$penguji_satu','$penguji_dua','$tahun')");
     return mysqli_affected_rows($conn);
   }
   function edit_skripsi($data)
@@ -117,6 +118,7 @@ if (isset($_SESSION["data-user"])) {
     $penguji_satu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['penguji_satu']))));
     $penguji_dua = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['penguji_dua']))));
     $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tahun']))));
+    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategori']))));
 
     if ($nim != $nimOld) {
       $checkNIM = mysqli_query($conn, "SELECT * FROM data_skripsi WHERE nim='$nim'");
@@ -127,7 +129,7 @@ if (isset($_SESSION["data-user"])) {
       }
     }
 
-    mysqli_query($conn, "UPDATE data_skripsi SET nim='$nim', nama_mahasiswa='$nama', judul='$judul', abstrak='$abstrak', pembimbing_satu='$pembimbing_satu', pembimbing_dua='$pembimbing_dua', penguji_satu='$penguji_satu', penguji_dua='$penguji_dua', tahun='$tahun' WHERE id_skripsi='$id_skripsi'");
+    mysqli_query($conn, "UPDATE data_skripsi SET nim='$nim', nama_mahasiswa='$nama', judul='$judul', abstrak='$abstrak', kategori='$kategori', pembimbing_satu='$pembimbing_satu', pembimbing_dua='$pembimbing_dua', penguji_satu='$penguji_satu', penguji_dua='$penguji_dua', tahun='$tahun' WHERE id_skripsi='$id_skripsi'");
     return mysqli_affected_rows($conn);
   }
   function delete_skripsi($data)

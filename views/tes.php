@@ -123,6 +123,15 @@ foreach ($testing_data as $data) {
 echo "Akurasi: " . $accuracy . "%<br>";
 
 
+
+
+
+
+
+
+
+
+
 // // Mengambil data dari tabel
 // $training = "SELECT data_skripsi.abstrak, kategori.kategori FROM klasifikasi JOIN data_skripsi ON klasifikasi.id_skripsi=data_skripsi.id_skripsi JOIN kategori ON klasifikasi.id_kategori=kategori.id_kategori";
 // $training_result = $conn->query($training);
