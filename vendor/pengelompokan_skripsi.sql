@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Bulan Mei 2023 pada 06.56
+-- Waktu pembuatan: 13 Bulan Mei 2023 pada 09.59
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -99,8 +99,8 @@ CREATE TABLE `klasifikasi` (
 
 INSERT INTO `klasifikasi` (`id_klasifikasi`, `id_skripsi`, `kategori`, `created_at`, `updated_at`) VALUES
 (334, 2, 'Mobile', '2023-05-11 11:51:09', '2023-05-11 11:51:09'),
-(335, 3, 'Mobile', '2023-05-11 11:51:10', '2023-05-11 11:51:10'),
-(336, 4, 'Mobile', '2023-05-11 11:51:10', '2023-05-11 11:51:10'),
+(335, 3, 'Software', '2023-05-11 11:51:10', '2023-05-11 11:51:10'),
+(336, 4, 'Software', '2023-05-11 11:51:10', '2023-05-11 11:51:10'),
 (337, 5, 'Software', '2023-05-11 11:51:10', '2023-05-11 11:51:10'),
 (338, 6, 'Software', '2023-05-11 11:51:10', '2023-05-11 11:51:10'),
 (339, 7, 'Software', '2023-05-11 11:51:10', '2023-05-11 11:51:10'),
@@ -121,6 +121,8 @@ INSERT INTO `klasifikasi` (`id_klasifikasi`, `id_skripsi`, `kategori`, `created_
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `id_role` int(11) DEFAULT 2,
+  `id_status` int(11) NOT NULL DEFAULT 2,
+  `en_user` varchar(75) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
   `email` varchar(75) DEFAULT NULL,
   `password` varchar(75) DEFAULT NULL,
@@ -132,8 +134,8 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id_user`, `id_role`, `username`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'admin@gmail.com', '$2y$10$//KMATh3ibPoI3nHFp7x/u7vnAbo2WyUgmI4x0CVVrH8ajFhMvbjG', '2023-03-27 15:14:01', '2023-03-27 15:14:01');
+INSERT INTO `users` (`id_user`, `id_role`, `id_status`, `en_user`, `username`, `email`, `password`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '', 'admin', 'admin@gmail.com', '$2y$10$//KMATh3ibPoI3nHFp7x/u7vnAbo2WyUgmI4x0CVVrH8ajFhMvbjG', '2023-03-27 15:14:01', '2023-03-27 15:14:01');
 
 -- --------------------------------------------------------
 
@@ -152,7 +154,7 @@ CREATE TABLE `users_role` (
 
 INSERT INTO `users_role` (`id_role`, `role`) VALUES
 (1, 'Admin'),
-(2, 'Owner');
+(2, 'Mahasiswa');
 
 --
 -- Indexes for dumped tables
@@ -217,7 +219,7 @@ ALTER TABLE `klasifikasi`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `users_role`

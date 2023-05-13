@@ -55,17 +55,23 @@ if (!isset($_SESSION["data-user"])) {
       return false;
     } else if (mysqli_num_rows($checkAccount) > 0) {
       $row = mysqli_fetch_assoc($checkAccount);
-      if (password_verify($password, $row["password"])) {
-        $_SESSION["data-user"] = [
-          "id" => $row["id_user"],
-          "role" => $row["id_role"],
-          "email" => $row["email"],
-          "username" => $row["username"],
-        ];
-      } else {
-        $_SESSION["message-danger"] = "Maaf, kata sandi yang anda masukan salah.";
+      if ($row['id_status'] == 2) {
+        $_SESSION["message-danger"] = "Maaf, akun ada belum diaktivasi.";
         $_SESSION["time-message"] = time();
         return false;
+      } else {
+        if (password_verify($password, $row["password"])) {
+          $_SESSION["data-user"] = [
+            "id" => $row["id_user"],
+            "role" => $row["id_role"],
+            "email" => $row["email"],
+            "username" => $row["username"],
+          ];
+        } else {
+          $_SESSION["message-danger"] = "Maaf, kata sandi yang anda masukan salah.";
+          $_SESSION["time-message"] = time();
+          return false;
+        }
       }
     }
   }
