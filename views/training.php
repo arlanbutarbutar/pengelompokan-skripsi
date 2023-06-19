@@ -1,7 +1,7 @@
 <?php require_once("../controller/script.php");
 require_once("redirect.php");
-$_SESSION["page-name"] = "Data Testing";
-$_SESSION["page-url"] = "testing";
+$_SESSION["page-name"] = "Data Training";
+$_SESSION["page-url"] = "training";
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +34,12 @@ $_SESSION["page-url"] = "testing";
                 <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                   <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                      <h3>Data Testing</h3>
+                      <h3>Training</h3>
                     </li>
                   </ul>
                   <div>
                     <div class="btn-wrapper">
-                      <a href="export-testing" class="btn btn-primary text-white me-0 rounded-0 shadow"> Export</a>
+                      <a href="export-training" class="btn btn-primary text-white me-0 rounded-0 shadow"> Export</a>
                     </div>
                   </div>
                 </div>
@@ -59,9 +59,9 @@ $_SESSION["page-url"] = "testing";
                         </tr>
                       </thead>
                       <tbody>
-                        <?php if (mysqli_num_rows($dataTesting) > 0) {
+                        <?php if (mysqli_num_rows($dataTraining) > 0) {
                           $no = 1;
-                          while ($row = mysqli_fetch_assoc($dataTesting)) { ?>
+                          while ($row = mysqli_fetch_assoc($dataTraining)) { ?>
                             <tr>
                               <th scope="row"><?= $no; ?></th>
                               <td><?= $row["nim"] ?></td>

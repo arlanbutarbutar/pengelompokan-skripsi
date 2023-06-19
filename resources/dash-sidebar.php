@@ -15,7 +15,7 @@
         </a>
       </li>
     <?php } ?>
-    <li class="nav-item nav-category">Data Skripsi</li>
+    <li class="nav-item nav-category">Data NBC</li>
     <?php if ($_SESSION['data-user']['role'] == 1) { ?>
       <li class="nav-item">
         <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='skripsi'">
@@ -24,16 +24,29 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='kategori'">
+        <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='kelas-klasifikasi'">
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-          <span class="menu-title">Kategori</span>
+          <span class="menu-title">Kelas Klasifikasi</span>
         </a>
       </li>
     <?php } ?>
+    <li class="nav-item nav-category">Data Hitung</li>
+    <li class="nav-item">
+      <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='training'">
+        <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+        <span class="menu-title">Data Training</span>
+      </a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='klasifikasi'">
         <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
         <span class="menu-title">Klasifikasi</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='testing'">
+        <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+        <span class="menu-title">Data Testing</span>
       </a>
     </li>
     <li class="nav-item nav-category"></li>

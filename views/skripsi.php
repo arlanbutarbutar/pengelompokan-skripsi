@@ -53,6 +53,9 @@ $_SESSION["page-url"] = "skripsi";
                           <th scope="col" class="text-center">Nama</th>
                           <th scope="col" class="text-center">Judul</th>
                           <th scope="col" class="text-center">Abstrak</th>
+                          <th scope="col" class="text-center">Kategori</th>
+                          <th scope="col" class="text-center">Jenis Perangkat</th>
+                          <th scope="col" class="text-center">Bhs. Pemrograman</th>
                           <th scope="col" class="text-center">Pembimbing 1</th>
                           <th scope="col" class="text-center">Pembimbing 2</th>
                           <th scope="col" class="text-center">Penguji 1</th>
@@ -62,13 +65,13 @@ $_SESSION["page-url"] = "skripsi";
                         </tr>
                       </thead>
                       <tbody>
-                        <?php if (mysqli_num_rows($data_skripsi) > 0) {
+                        <?php if (mysqli_num_rows($skripsi) > 0) {
                           $no = 1;
-                          while ($row = mysqli_fetch_assoc($data_skripsi)) { ?>
+                          while ($row = mysqli_fetch_assoc($skripsi)) { ?>
                             <tr>
                               <th scope="row"><?= $no; ?></th>
                               <td><?= $row["nim"] ?></td>
-                              <td><?= $row["nama_mahasiswa"] ?></td>
+                              <td><?= $row["nama"] ?></td>
                               <td><?= $row["judul"] ?></td>
                               <td>
                                 <button type="button" class="btn btn-primary btn-sm text-white rounded-0 border-0" style="height: 30px;" data-bs-toggle="modal" data-bs-target="#abstrak<?= $row["id_skripsi"] ?>">
@@ -88,6 +91,9 @@ $_SESSION["page-url"] = "skripsi";
                                   </div>
                                 </div>
                               </td>
+                              <td><?= $row["kategori"] ?></td>
+                              <td><?= $row["jenis_perangkat"] ?></td>
+                              <td><?= $row["bahasa_pemrograman"] ?></td>
                               <td><?= $row["pembimbing_satu"] ?></td>
                               <td><?= $row["pembimbing_dua"] ?></td>
                               <td><?= $row["penguji_satu"] ?></td>
@@ -102,7 +108,7 @@ $_SESSION["page-url"] = "skripsi";
                                     <div class="modal-dialog modal-lg">
                                       <div class="modal-content">
                                         <div class="modal-header border-bottom-0 shadow">
-                                          <h5 class="modal-title" id="exampleModalLabel">Ubah data <?= $row["nama_mahasiswa"] ?></h5>
+                                          <h5 class="modal-title" id="exampleModalLabel">Ubah data <?= $row["nama"] ?></h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <form action="" method="POST">
@@ -113,7 +119,7 @@ $_SESSION["page-url"] = "skripsi";
                                             </div>
                                             <div class="mb-3">
                                               <label for="nama" class="form-label">Nama <small class="text-danger">*</small></label>
-                                              <input type="text" name="nama" value="<?= $row['nama_mahasiswa'] ?>" class="form-control text-center" id="nama" minlength="3" placeholder="Nama" required>
+                                              <input type="text" name="nama" value="<?= $row['nama'] ?>" class="form-control text-center" id="nama" minlength="3" placeholder="Nama" required>
                                             </div>
                                             <div class="mb-3">
                                               <label for="judul" class="form-label">Judul <small class="text-danger">*</small></label>
@@ -122,6 +128,36 @@ $_SESSION["page-url"] = "skripsi";
                                             <div class="mb-3">
                                               <label for="abstrak" class="form-label">Abstrak <small class="text-danger">*</small></label>
                                               <textarea name="abstrak" style="height: 200px;line-height: 20px;" class="form-control" id="exampleFormControlTextarea1" rows="3" required><?= $row['abstrak'] ?></textarea>
+                                            </div>
+                                            <div class="mb-3 text-center">
+                                              <label for="kategori" class="form-label">Kategori</label>
+                                              <select name="kategori" class="form-select" aria-label="Default select example" required>
+                                                <option selected value="">Pilih Kategori</option>
+                                                <option value="Sistem Informasi">Sistem Informasi</option>
+                                                <option value="Analisis Data">Analisis Data</option>
+                                                <option value="Pengolahan Citra">Pengolahan Citra</option>
+                                                <option value="Aplikasi Mobile">Aplikasi Mobile</option>
+                                                <option value="Keamanan Informasi">Keamanan Informasi</option>
+                                                <option value="Optimasi">Optimasi</option>
+                                              </select>
+                                            </div>
+                                            <div class="mb-3 text-center">
+                                              <label for="jenis_perangkat" class="form-label">Jenis Perangkat</label>
+                                              <select name="jenis_perangkat" class="form-select" aria-label="Default select example" required>
+                                                <option selected value="">Pilih Jenis Perangkat</option>
+                                                <option value="Software">Software</option>
+                                                <option value="Hardware">Hardware</option>
+                                              </select>
+                                            </div>
+                                            <div class="mb-3 text-center">
+                                              <label for="bahasa_pemrograman" class="form-label">Bahasa Pemrograman</label>
+                                              <select name="bahasa_pemrograman" class="form-select" aria-label="Default select example" required>
+                                                <option selected value="">Pilih Bahasa Pemrograman</option>
+                                                <option value="Java">Java</option>
+                                                <option value="Python">Python</option>
+                                                <option value="PHP">PHP</option>
+                                                <option value="Solidity">Solidity</option>
+                                              </select>
                                             </div>
                                             <div class="mb-3">
                                               <label for="pembimbing_satu" class="form-label">Pembimbing 1 <small class="text-danger">*</small></label>
@@ -144,13 +180,13 @@ $_SESSION["page-url"] = "skripsi";
                                               <input type="number" name="tahun" value="<?= $row['tahun'] ?>" class="form-control text-center" id="tahun" placeholder="Tahun Lulus" required>
                                             </div>
                                             <div class="mb-3 text-center">
-                                              <label for="kategori" class="form-label">Kategori</label>
-                                              <select name="kategori" class="form-select" aria-label="Default select example" required>
-                                                <option selected value="<?= $row['kategori'] ?>"><?= $row['kategori'] ?></option>
-                                                <?php $kategori=$row['kategori'];
-                                                $selectKategori=mysqli_query($conn, "SELECT * FROM kategori WHERE kategori!='$kategori'");
-                                                foreach ($selectKategori as $row3) : ?>
-                                                  <option value="<?= $row3['kategori'] ?>"><?= $row3['kategori'] ?></option>
+                                              <label for="id_kelas" class="form-label">Kelas</label>
+                                              <select name="id_kelas" class="form-select" aria-label="Default select example" required>
+                                                <option selected value="<?= $row['id_kelas'] ?>"><?= $row['kelas'] ?></option>
+                                                <?php $id_kelas = $row['id_kelas'];
+                                                $selectKelas = mysqli_query($conn, "SELECT * FROM kelas WHERE id_kelas!='$id_kelas'");
+                                                foreach ($selectKelas as $row3) : ?>
+                                                  <option value="<?= $row3['id_kelas'] ?>"><?= $row3['kelas'] ?></option>
                                                 <?php endforeach ?>
                                               </select>
                                             </div>
@@ -174,7 +210,7 @@ $_SESSION["page-url"] = "skripsi";
                                     <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header border-bottom-0 shadow">
-                                          <h5 class="modal-title" id="exampleModalLabel">Hapus data <?= $row["nama_mahasiswa"] ?></h5>
+                                          <h5 class="modal-title" id="exampleModalLabel">Hapus data <?= $row["nama"] ?></h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body text-center">
@@ -230,6 +266,36 @@ $_SESSION["page-url"] = "skripsi";
                     <label for="abstrak" class="form-label">Abstrak <small class="text-danger">*</small></label>
                     <textarea name="abstrak" class="form-control" id="exampleFormControlTextarea1" placeholder="Abstrak" style="height: 100px;" rows="3" required></textarea>
                   </div>
+                  <div class="mb-3 text-center">
+                    <label for="kategori" class="form-label">Kategori</label>
+                    <select name="kategori" class="form-select" aria-label="Default select example" required>
+                      <option selected value="">Pilih Kategori</option>
+                      <option value="Sistem Informasi">Sistem Informasi</option>
+                      <option value="Analisis Data">Analisis Data</option>
+                      <option value="Pengolahan Citra">Pengolahan Citra</option>
+                      <option value="Aplikasi Mobile">Aplikasi Mobile</option>
+                      <option value="Keamanan Informasi">Keamanan Informasi</option>
+                      <option value="Optimasi">Optimasi</option>
+                    </select>
+                  </div>
+                  <div class="mb-3 text-center">
+                    <label for="jenis_perangkat" class="form-label">Jenis Perangkat</label>
+                    <select name="jenis_perangkat" class="form-select" aria-label="Default select example" required>
+                      <option selected value="">Pilih Jenis Perangkat</option>
+                      <option value="Software">Software</option>
+                      <option value="Hardware">Hardware</option>
+                    </select>
+                  </div>
+                  <div class="mb-3 text-center">
+                    <label for="bahasa_pemrograman" class="form-label">Bahasa Pemrograman</label>
+                    <select name="bahasa_pemrograman" class="form-select" aria-label="Default select example" required>
+                      <option selected value="">Pilih Bahasa Pemrograman</option>
+                      <option value="Java">Java</option>
+                      <option value="Python">Python</option>
+                      <option value="PHP">PHP</option>
+                      <option value="Solidity">Solidity</option>
+                    </select>
+                  </div>
                   <div class="mb-3">
                     <label for="pembimbing_satu" class="form-label">Pembimbing 1 <small class="text-danger">*</small></label>
                     <input type="text" name="pembimbing_satu" class="form-control text-center" id="pembimbing_satu" placeholder="Pembimbing 1" required>
@@ -251,11 +317,11 @@ $_SESSION["page-url"] = "skripsi";
                     <input type="number" name="tahun" min="2001" max="2035" step="1" value="<?= date('Y') ?>" class="form-control text-center" id="tahun" placeholder="Tahun Lulus" required>
                   </div>
                   <div class="mb-3 text-center">
-                    <label for="kategori" class="form-label">Kategori</label>
-                    <select name="kategori" class="form-select" aria-label="Default select example" required>
-                      <option selected value="">Pilih Kategori</option>
-                      <?php foreach ($kategoriData as $row2) : ?>
-                        <option value="<?= $row2['kategori'] ?>"><?= $row2['kategori'] ?></option>
+                    <label for="kelas" class="form-label">Kelas</label>
+                    <select name="id_kelas" class="form-select" aria-label="Default select example" required>
+                      <option selected value="">Pilih Kelas</option>
+                      <?php foreach ($kelas as $row2) : ?>
+                        <option value="<?= $row2['id_kelas'] ?>"><?= $row2['kelas'] ?></option>
                       <?php endforeach ?>
                     </select>
                   </div>

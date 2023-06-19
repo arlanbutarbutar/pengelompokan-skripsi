@@ -83,7 +83,8 @@ if (isset($_SESSION["data-user"])) {
     }
   }
 
-  $data_skripsi = mysqli_query($conn, "SELECT * FROM data_skripsi");
+  $skripsi = mysqli_query($conn, "SELECT skripsi.*, kelas.kelas FROM skripsi JOIN training ON skripsi.id_skripsi=training.id_skripsi JOIN kelas ON training.id_kelas=kelas.id_kelas");
+  $kelas = mysqli_query($conn, "SELECT * FROM kelas");
   if (isset($_POST["tambah-skripsi"])) {
     if (add_skripsi($_POST) > 0) {
       $_SESSION["message-success"] = "Data skripsi berhasil ditambahkan.";
@@ -109,47 +110,78 @@ if (isset($_SESSION["data-user"])) {
     }
   }
 
-  $kategori = mysqli_query($conn, "SELECT * FROM kategori");
-  if (isset($_POST["tambah-kategori"])) {
-    if (add_kategori($_POST) > 0) {
-      $_SESSION["message-success"] = "Data kategori berhasil ditambahkan.";
+  $kelas = mysqli_query($conn, "SELECT * FROM kelas");
+  if (isset($_POST["tambah-kelas"])) {
+    if (add_kelas($_POST) > 0) {
+      $_SESSION["message-success"] = "Data kelas berhasil ditambahkan.";
       $_SESSION["time-message"] = time();
       header("Location: " . $_SESSION["page-url"]);
       exit();
     }
   }
-  if (isset($_POST["ubah-kategori"])) {
-    if (edit_kategori($_POST) > 0) {
-      $_SESSION["message-success"] = "Data kategori berhasil diubah.";
+  if (isset($_POST["ubah-kelas"])) {
+    if (edit_kelas($_POST) > 0) {
+      $_SESSION["message-success"] = "Data kelas berhasil diubah.";
       $_SESSION["time-message"] = time();
       header("Location: " . $_SESSION["page-url"]);
       exit();
     }
   }
-  if (isset($_POST["hapus-kategori"])) {
-    if (delete_kategori($_POST) > 0) {
-      $_SESSION["message-success"] = "Data kategori berhasil dihapus.";
+  if (isset($_POST["hapus-kelas"])) {
+    if (delete_kelas($_POST) > 0) {
+      $_SESSION["message-success"] = "Data kelas berhasil dihapus.";
       $_SESSION["time-message"] = time();
       header("Location: " . $_SESSION["page-url"]);
       exit();
     }
   }
 
-  $mahasiswaSkripsi = mysqli_query($conn, "SELECT MIN(`id_skripsi`) AS `id_skripsi`, `nim`, `nama_mahasiswa`, `judul`, `abstrak`, `pembimbing_satu`, `pembimbing_dua`, `penguji_satu`, `penguji_dua`, `tahun` FROM `data_skripsi` GROUP BY `tahun`");
-  $kategoriData = mysqli_query($conn, "SELECT * FROM kategori");
-  if (isset($_POST['seleksi'])) {
-    $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['tahun']))));
+  if (isset($_POST['data-uji'])) {
+    $nim = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['nim']))));
+    $nama = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['nama']))));
+    $judul = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['judul']))));
+    $abstrak = $_POST['abstrak'];
     $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['kategori']))));
-    $_SESSION['data-klasifikasi'] = ['tahun' => $tahun, 'kategori' => $kategori];
-    header("Location: klasifikasi?to=dataset");
+    $jenis_perangkat = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['jenis_perangkat']))));
+    $bahasa_pemrograman = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['bahasa_pemrograman']))));
+    $pembimbing_satu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['pembimbing_satu']))));
+    $pembimbing_dua = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['pembimbing_dua']))));
+    $penguji_satu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['penguji_satu']))));
+    $penguji_dua = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['penguji_dua']))));
+    $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_POST['tahun']))));
+    $_SESSION['data-klasifikasi'] = [
+      'nim' => $nim,
+      'nama' => $nama,
+      'judul' => $judul,
+      'abstrak' => $abstrak,
+      'kategori' => $kategori,
+      'jenis_perangkat' => $jenis_perangkat,
+      'bahasa_pemrograman' => $bahasa_pemrograman,
+      'pembimbing_satu' => $pembimbing_satu,
+      'pembimbing_dua' => $pembimbing_dua,
+      'penguji_satu' => $penguji_satu,
+      'penguji_dua' => $penguji_dua,
+      'tahun' => $tahun,
+    ];
+    $checkNIM = mysqli_query($conn, "SELECT * FROM skripsi WHERE nim='$nim'");
+    if (mysqli_num_rows($checkNIM) > 0) {
+      $_SESSION["message-info"] = "Skripsi (" . $nim . ") " . $nama . " sudah di uji.";
+      $_SESSION["time-message"] = time();
+      return false;
+    } else {
+      header("Location: klasifikasi?to=data-training");
+      exit();
+    }
+  }
+  if (isset($_SESSION['data-klasifikasi'])) {
+    $data_training = mysqli_query($conn, "SELECT * FROM training JOIN skripsi ON training.id_skripsi=skripsi.id_skripsi JOIN kelas ON training.id_kelas=kelas.id_kelas");
+  }
+  if (isset($_POST['reset-hitung'])) {
+    unset($_SESSION['data-klasifikasi']);
+    header("Location: klasifikasi");
     exit();
   }
 
-  if (isset($_SESSION['data-klasifikasi'])) {
-    $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['tahun']))));
-    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $_SESSION['data-klasifikasi']['kategori']))));
-    $dataset = mysqli_query($conn, "SELECT * FROM data_skripsi WHERE tahun='$tahun' AND kategori='$kategori'");
-  }
-
-  $klasifikasi = mysqli_query($conn, "SELECT * FROM klasifikasi JOIN seleksi ON klasifikasi.id_seleksi=seleksi.id_seleksi JOIN data_skripsi ON seleksi.id_skripsi=data_skripsi.id_skripsi");
+  $dataTraining = mysqli_query($conn, "SELECT skripsi.*, kelas.kelas FROM skripsi JOIN training ON skripsi.id_skripsi=training.id_skripsi JOIN kelas ON training.id_kelas=kelas.id_kelas");
+  $dataTesting = mysqli_query($conn, "SELECT skripsi.*, kelas.kelas FROM skripsi JOIN testing ON skripsi.id_skripsi=testing.id_skripsi JOIN kelas ON testing.id_kelas=kelas.id_kelas");
 }

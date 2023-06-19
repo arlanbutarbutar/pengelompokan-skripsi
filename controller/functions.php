@@ -130,25 +130,36 @@ if (isset($_SESSION["data-user"])) {
   function add_skripsi($data)
   {
     global $conn;
+    $checkID = mysqli_query($conn, "SELECT * FROM skripsi ORDER BY id_skripsi DESC LIMIT 1");
+    if (mysqli_num_rows($checkID) > 0) {
+      $row = mysqli_fetch_assoc($checkID);
+      $id_skripsi = $row['id_skripsi'] + 1;
+    } else {
+      $id_skripsi = 1;
+    }
     $nim = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['nim']))));
     $nama = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['nama']))));
     $judul = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['judul']))));
     $abstrak = $data['abstrak'];
+    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategori']))));
+    $jenis_perangkat = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['jenis_perangkat']))));
+    $bahasa_pemrograman = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['bahasa_pemrograman']))));
     $pembimbing_satu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['pembimbing_satu']))));
     $pembimbing_dua = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['pembimbing_dua']))));
     $penguji_satu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['penguji_satu']))));
     $penguji_dua = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['penguji_dua']))));
     $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tahun']))));
-    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategori']))));
+    $id_kelas = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id_kelas']))));
 
-    $checkNIM = mysqli_query($conn, "SELECT * FROM data_skripsi WHERE nim='$nim'");
+    $checkNIM = mysqli_query($conn, "SELECT * FROM skripsi WHERE nim='$nim'");
     if (mysqli_num_rows($checkNIM) > 0) {
       $_SESSION["message-danger"] = "Maaf, NIM mahasiswa tersebut sudah ada.";
       $_SESSION["time-message"] = time();
       return false;
     }
 
-    mysqli_query($conn, "INSERT INTO data_skripsi(nim,nama_mahasiswa,judul,abstrak,kategori,pembimbing_satu,pembimbing_dua,penguji_satu,penguji_dua,tahun) VALUES('$nim','$nama','$judul','$abstrak','$kategori','$pembimbing_satu','$pembimbing_dua','$penguji_satu','$penguji_dua','$tahun')");
+    mysqli_query($conn, "INSERT INTO skripsi(id_skripsi,nim,nama,judul,abstrak,kategori,jenis_perangkat,bahasa_pemrograman,pembimbing_satu,pembimbing_dua,penguji_satu,penguji_dua,tahun) VALUES('$id_skripsi','$nim','$nama','$judul','$abstrak','$kategori','$jenis_perangkat','$bahasa_pemrograman','$pembimbing_satu','$pembimbing_dua','$penguji_satu','$penguji_dua','$tahun')");
+    mysqli_query($conn, "INSERT INTO training(id_skripsi,id_kelas) VALUES('$id_skripsi','$id_kelas')");
     return mysqli_affected_rows($conn);
   }
   function edit_skripsi($data)
@@ -160,15 +171,18 @@ if (isset($_SESSION["data-user"])) {
     $nama = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['nama']))));
     $judul = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['judul']))));
     $abstrak = $data['abstrak'];
+    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategori']))));
+    $jenis_perangkat = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['jenis_perangkat']))));
+    $bahasa_pemrograman = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['bahasa_pemrograman']))));
     $pembimbing_satu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['pembimbing_satu']))));
     $pembimbing_dua = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['pembimbing_dua']))));
     $penguji_satu = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['penguji_satu']))));
     $penguji_dua = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['penguji_dua']))));
     $tahun = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['tahun']))));
-    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategori']))));
+    $id_kelas = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id_kelas']))));
 
     if ($nim != $nimOld) {
-      $checkNIM = mysqli_query($conn, "SELECT * FROM data_skripsi WHERE nim='$nim'");
+      $checkNIM = mysqli_query($conn, "SELECT * FROM skripsi WHERE nim='$nim'");
       if (mysqli_num_rows($checkNIM) > 0) {
         $_SESSION["message-danger"] = "Maaf, NIM mahasiswa tersebut sudah ada.";
         $_SESSION["time-message"] = time();
@@ -176,54 +190,54 @@ if (isset($_SESSION["data-user"])) {
       }
     }
 
-    mysqli_query($conn, "UPDATE data_skripsi SET nim='$nim', nama_mahasiswa='$nama', judul='$judul', abstrak='$abstrak', kategori='$kategori', pembimbing_satu='$pembimbing_satu', pembimbing_dua='$pembimbing_dua', penguji_satu='$penguji_satu', penguji_dua='$penguji_dua', tahun='$tahun' WHERE id_skripsi='$id_skripsi'");
+    mysqli_query($conn, "UPDATE skripsi SET nim='$nim', nama='$nama', judul='$judul', abstrak='$abstrak', kategori='$kategori', jenis_perangkat='$jenis_perangkat', bahasa_pemrograman='$bahasa_pemrograman', pembimbing_satu='$pembimbing_satu', pembimbing_dua='$pembimbing_dua', penguji_satu='$penguji_satu', penguji_dua='$penguji_dua', tahun='$tahun' WHERE id_skripsi='$id_skripsi'");
+    mysqli_query($conn, "UPDATE training SET id_kelas='$id_kelas' WHERE id_skripsi='$id_skripsi'");
     return mysqli_affected_rows($conn);
   }
   function delete_skripsi($data)
   {
     global $conn;
     $id_skripsi = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id_skripsi']))));
-    mysqli_query($conn, "DELETE FROM data_skripsi WHERE id_skripsi='$id_skripsi'");
+    mysqli_query($conn, "DELETE FROM skripsi WHERE id_skripsi='$id_skripsi'");
     return mysqli_affected_rows($conn);
   }
-  function add_kategori($data)
+  function add_kelas($data)
   {
     global $conn;
-    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategori']))));
-    $checkKategori = mysqli_query($conn, "SELECT * FROM kategori WHERE kategori='$kategori'");
+    $kelas = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kelas']))));
+    $checkKategori = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas='$kelas'");
     if (mysqli_num_rows($checkKategori) > 0) {
-      $_SESSION["message-danger"] = "Maaf, nama kategori sudah ada.";
+      $_SESSION["message-danger"] = "Maaf, nama kelas sudah ada.";
       $_SESSION["time-message"] = time();
       return false;
     }
 
-    mysqli_query($conn, "INSERT INTO kategori(kategori) VALUES('$kategori')");
+    mysqli_query($conn, "INSERT INTO kelas(kelas) VALUES('$kelas')");
     return mysqli_affected_rows($conn);
   }
-  function edit_kategori($data)
+  function edit_kelas($data)
   {
     global $conn;
-    $id_kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id-kategori']))));
-    $kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategori']))));
-    $kategoriOld = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kategoriOld']))));
-    if ($kategori != $kategoriOld) {
-      $checkKategori = mysqli_query($conn, "SELECT * FROM kategori WHERE kategori='$kategori'");
+    $id_kelas = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id_kelas']))));
+    $kelas = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kelas']))));
+    $kelasOld = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['kelasOld']))));
+    if ($kelas != $kelasOld) {
+      $checkKategori = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas='$kelas'");
       if (mysqli_num_rows($checkKategori) > 0) {
-        $_SESSION["message-danger"] = "Maaf, nama kategori sudah ada.";
+        $_SESSION["message-danger"] = "Maaf, nama kelas sudah ada.";
         $_SESSION["time-message"] = time();
         return false;
       }
     }
 
-    mysqli_query($conn, "UPDATE kategori SET kategori='$kategori' WHERE id_kategori='$id_kategori'");
+    mysqli_query($conn, "UPDATE kelas SET kelas='$kelas' WHERE id_kelas='$id_kelas'");
     return mysqli_affected_rows($conn);
   }
-  function delete_kategori($data)
+  function delete_kelas($data)
   {
     global $conn;
-    $id_kategori = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id-kategori']))));
-    mysqli_query($conn, "DELETE FROM klasifikasi WHERE id_kategori='$id_kategori'");
-    mysqli_query($conn, "DELETE FROM kategori WHERE id_kategori='$id_kategori'");
+    $id_kelas = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id_kelas']))));
+    mysqli_query($conn, "DELETE FROM kelas WHERE id_kelas='$id_kelas'");
     return mysqli_affected_rows($conn);
   }
 }
