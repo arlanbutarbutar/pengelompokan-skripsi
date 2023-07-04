@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jun 2023 pada 23.59
+-- Waktu pembuatan: 04 Jul 2023 pada 17.09
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 7.4.30
 
@@ -60,7 +60,10 @@ CREATE TABLE `klasifikasi` (
 
 INSERT INTO `klasifikasi` (`id_klasifikasi`, `id_testing`, `nilai_akhir`, `created_at`, `updated_at`) VALUES
 (358, 1, '0.16', '2023-06-20 05:28:59', '2023-06-20 05:28:59'),
-(359, 2, '0.18', '2023-06-20 05:56:21', '2023-06-20 05:56:21');
+(359, 2, '0.18', '2023-06-20 05:56:21', '2023-06-20 05:56:21'),
+(360, 3, '0.18', '2023-06-20 08:06:29', '2023-06-20 08:06:29'),
+(361, 4, '0.18', '2023-06-20 08:19:39', '2023-06-20 08:19:39'),
+(362, 5, '0.18', '2023-07-04 17:15:19', '2023-07-04 17:15:19');
 
 -- --------------------------------------------------------
 
@@ -140,7 +143,10 @@ INSERT INTO `skripsi` (`id_skripsi`, `nim`, `nama`, `judul`, `abstrak`, `kategor
 (63, 23114115, 'Martinus robinson sumitro', 'Pengembangan Aplikasi Mobile untuk Monitoring Konsumsi Energi Listrik', '', 'Aplikasi Mobile', 'Software', 'Java', '', '', '', '', 2023),
 (64, 23114065, 'Karolina yunita solle ', 'Pengembangan Aplikasi Mobile untuk Pencarian Tempat Parkir', '', 'Aplikasi Mobile', 'Software', 'Java', '', '', '', '', 2023),
 (65, 23114077, 'Mario cristyanto lelang aya', 'Penerapan Metode Naive Bayes untuk Analisis Sentimen pada Aplikasi Media Sosial Mobile', 'tes', 'Analisis Data', 'Software', 'Python', 'Paulina Aliandu, ST,M.Cs', 'Emiliana Meolbatak,ST.MT', 'Patrisius Batarius,ST,MT', 'Frengky Teddy, ST,MT', 2023),
-(66, 23118036, 'Arlan Butar Butar', 'tes', 'tes', 'Sistem Informasi', 'Software', 'PHP', 'Emiliana Meolbatak,ST.MT', 'Ignatius P.A.N. Samane S.Si,M.Eng', 'Sisilia D.B Mau,S.Kom,MT', 'Frengky Teddy, ST,MT', 2023);
+(66, 23118036, 'Arlan Butar Butar', 'tes', 'tes', 'Sistem Informasi', 'Software', 'PHP', 'Emiliana Meolbatak,ST.MT', 'Ignatius P.A.N. Samane S.Si,M.Eng', 'Sisilia D.B Mau,S.Kom,MT', 'Frengky Teddy, ST,MT', 2023),
+(67, 24224, 'tes', 'ege', 'ee', 'Sistem Informasi', 'Hardware', 'Python', 'Paulus irsan dardana ST,MT', 'Yulianti P, Bria Seran ST,MM', 'Emanuel jando,S.Kom,MTI', 'Natalia M.R. Mamulak, ST,MM', 2023),
+(68, 23114025, 'Amandus juan diego mite', 'Analisis dan Implementasi Sistem Informasi Penjualan Online', 'tes', 'Sistem Informasi', 'Software', 'PHP', 'Donatus J. Manehat, S.Si,M.Kom', 'Frengky Teddy, ST,MT', 'Sisilia D.B Mau,S.Kom,MT', 'Frengky Teddy, ST,MT', 2023),
+(69, 123456789, '123456789', '123456789', '123456789', 'Sistem Informasi', 'Software', 'PHP', 'Emiliana Meolbatak,ST.MT', 'Ignatius P.A.N. Samane S.Si,M.Eng', 'Patrisius Batarius,ST,MT', 'Natalia M.R. Mamulak, ST,MM', 2023);
 
 -- --------------------------------------------------------
 
@@ -160,7 +166,10 @@ CREATE TABLE `testing` (
 
 INSERT INTO `testing` (`id_testing`, `id_skripsi`, `id_kelas`) VALUES
 (1, 65, 1),
-(2, 66, 1);
+(2, 66, 1),
+(3, 67, 1),
+(4, 68, 1),
+(5, 69, 1);
 
 -- --------------------------------------------------------
 
@@ -340,7 +349,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `klasifikasi`
 --
 ALTER TABLE `klasifikasi`
-  MODIFY `id_klasifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=360;
+  MODIFY `id_klasifikasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=363;
 
 --
 -- AUTO_INCREMENT untuk tabel `skripsi`
@@ -352,7 +361,7 @@ ALTER TABLE `skripsi`
 -- AUTO_INCREMENT untuk tabel `testing`
 --
 ALTER TABLE `testing`
-  MODIFY `id_testing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_testing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `training`
