@@ -57,6 +57,7 @@ $_SESSION["page-url"] = "testing";
                           <th scope="col" class="text-center">Jenis Perangkat</th>
                           <th scope="col" class="text-center">Bhs. Pemrograman</th>
                           <th scope="col" class="text-center">Kelas</th>
+                          <th scope="col" class="text-center">Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -90,6 +91,33 @@ $_SESSION["page-url"] = "testing";
                               <td><?= $row["jenis_perangkat"] ?></td>
                               <td><?= $row["bahasa_pemrograman"] ?></td>
                               <td><?= $row["kelas"] ?></td>
+                              <td class="d-flex justify-content-center">
+                                <div class="col">
+                                  <button type="button" class="btn btn-danger btn-sm text-white rounded-0 border-0" style="height: 30px;" data-bs-toggle="modal" data-bs-target="#hapus<?= $row["id_skripsi"] ?>">
+                                    <i class="bi bi-trash3"></i>
+                                  </button>
+                                  <div class="modal fade" id="hapus<?= $row["id_skripsi"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header border-bottom-0 shadow">
+                                          <h5 class="modal-title" id="exampleModalLabel">Hapus data <?= $row["nama"] ?></h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                          Anda yakin ingin menghapus data ini?
+                                        </div>
+                                        <div class="modal-footer justify-content-center border-top-0">
+                                          <button type="button" class="btn btn-secondary btn-sm rounded-0 border-0" style="height: 30px;" data-bs-dismiss="modal">Batal</button>
+                                          <form action="" method="POST">
+                                            <input type="hidden" name="id_testing" value="<?= $row["id_testing"] ?>">
+                                            <button type="submit" name="hapus-testing" class="btn btn-danger btn-sm rounded-0 text-white border-0" style="height: 30px;">Hapus</button>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
                             </tr>
                         <?php $no++;
                           }

@@ -240,4 +240,11 @@ if (isset($_SESSION["data-user"])) {
     mysqli_query($conn, "DELETE FROM kelas WHERE id_kelas='$id_kelas'");
     return mysqli_affected_rows($conn);
   }
+  function delete_testing($data)
+  {
+    global $conn;
+    $id_testing = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id_testing']))));
+    mysqli_query($conn, "DELETE FROM testing WHERE id_testing='$id_testing'");
+    return mysqli_affected_rows($conn);
+  }
 }
