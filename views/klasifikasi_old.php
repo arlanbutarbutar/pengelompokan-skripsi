@@ -127,10 +127,6 @@ $_SESSION["page-url"] = "klasifikasi";
                                       <option value="Aplikasi Mobile">Aplikasi Mobile</option>
                                       <option value="Keamanan Informasi">Keamanan Informasi</option>
                                       <option value="Optimasi">Optimasi</option>
-                                      <option value="Sistem Pendukung Keputusan">Sistem Pendukung Keputusan</option>
-                                      <option value="Sistem Pakar">Sistem Pakar</option>
-                                      <option value="Data Mining">Data Mining</option>
-                                      <option value="Multimedia">Multimedia</option>
                                     </select>
                                   </div>
                                   <div class="mb-3 text-center">
@@ -149,97 +145,23 @@ $_SESSION["page-url"] = "klasifikasi";
                                       <option value="Python">Python</option>
                                       <option value="PHP">PHP</option>
                                       <option value="Solidity">Solidity</option>
-                                      <option value="Matlab">Matlab</option>
-                                      <option value="Orange">Orange</option>
                                     </select>
                                   </div>
                                   <div class="mb-3">
                                     <label for="pembimbing_satu" class="form-label">Pembimbing 1 <small class="text-danger">*</small></label>
-                                    <select name="pembimbing_satu" class="form-select" aria-label="Default select example" required>
-                                      <option selected value="">Pilih Pembimbing 1</option>
-                                      <option value="(0828126601) Donatus Joseph Manehat, S.Si, M.Kom">(0828126601) Donatus Joseph Manehat, S.Si, M.Kom</option>
-                                      <option value="(0824047701) Emiliana Metan Meolbatak, ST, MT">(0824047701) Emiliana Metan Meolbatak, ST, MT</option>
-                                      <option value="(0825126701) Emanuel Jando, S.Kom, MT">(0825126701) Emanuel Jando, S.Kom, MT</option>
-                                      <option value="(0829087901) Paulina Aliandu, ST, M.Cs.">(0829087901) Paulina Aliandu, ST, M.Cs.</option>
-                                      <option value="(0815037801) Patrisius Batarius, ST, MT.">(0815037801) Patrisius Batarius, ST, MT.</option>
-                                      <option value="(0723057201) Dr. Adri Gabriel Sooai, ST,MT">(0723057201) Dr. Adri Gabriel Sooai, ST,MT</option>
-                                      <option value="(0801118302) Frengky Tedy, ST, MT.">(0801118302) Frengky Tedy, ST, MT.</option>
-                                      <option value="(0807098502) Sisilia Daeng Bakka Mau, S.Kom, MT">(0807098502) Sisilia Daeng Bakka Mau, S.Kom, MT</option>
-                                      <option value="(0831038602) Paskalis Andrianus Nani, ST,MT">(0831038602) Paskalis Andrianus Nani, ST,MT</option>
-                                      <option value="(0802038601) Emerensiana Ngaga, ST,MT">(0802038601) Emerensiana Ngaga, ST,MT</option>
-                                      <option value="(0828128502) Natalia Magdalena R. Mamulak, ST.,MM">(0828128502) Natalia Magdalena R. Mamulak, ST.,MM</option>
-                                      <option value="(0823078702) Yulianti Paula Bria ST., MT">(0823078702) Yulianti Paula Bria ST., MT</option>
-                                      <option value="(0804126301) P. David Amfotis, SVD, B.Th., MA">(0804126301) P. David Amfotis, SVD, B.Th., MA</option>
-                                      <option value="(0805058803) Yovinia Carmeneja Hoar Siki, ST., MT">(0805058803) Yovinia Carmeneja Hoar Siki, ST., MT</option>
-                                      <option value="(0818098102) Ignatius P. A. N. Samane, S Si., M Eng">(0818098102) Ignatius P. A. N. Samane, S Si., M Eng</option>
-                                      <option value="(0807078704) Alfry A. J.Sinlae, S.Kom., M.Cs.">(0807078704) Alfry A. J.Sinlae, S.Kom., M.Cs.</option>
-                                    </select>
+                                    <input type="text" name="pembimbing_satu" class="form-control text-center" id="pembimbing_satu" placeholder="Pembimbing 1" required>
                                   </div>
                                   <div class="mb-3">
                                     <label for="pembimbing_dua" class="form-label">Pembimbing 2 <small class="text-danger">*</small></label>
-                                    <select name="pembimbing_dua" class="form-select" aria-label="Default select example" required>
-                                      <option selected value="">Pilih Pembimbing 2</option>
-                                      <option value="(0828126601) Donatus Joseph Manehat, S.Si, M.Kom">(0828126601) Donatus Joseph Manehat, S.Si, M.Kom</option>
-                                      <option value="(0824047701) Emiliana Metan Meolbatak, ST, MT">(0824047701) Emiliana Metan Meolbatak, ST, MT</option>
-                                      <option value="(0825126701) Emanuel Jando, S.Kom, MT">(0825126701) Emanuel Jando, S.Kom, MT</option>
-                                      <option value="(0829087901) Paulina Aliandu, ST, M.Cs.">(0829087901) Paulina Aliandu, ST, M.Cs.</option>
-                                      <option value="(0815037801) Patrisius Batarius, ST, MT.">(0815037801) Patrisius Batarius, ST, MT.</option>
-                                      <option value="(0723057201) Dr. Adri Gabriel Sooai, ST,MT">(0723057201) Dr. Adri Gabriel Sooai, ST,MT</option>
-                                      <option value="(0801118302) Frengky Tedy, ST, MT.">(0801118302) Frengky Tedy, ST, MT.</option>
-                                      <option value="(0807098502) Sisilia Daeng Bakka Mau, S.Kom, MT">(0807098502) Sisilia Daeng Bakka Mau, S.Kom, MT</option>
-                                      <option value="(0831038602) Paskalis Andrianus Nani, ST,MT">(0831038602) Paskalis Andrianus Nani, ST,MT</option>
-                                      <option value="(0802038601) Emerensiana Ngaga, ST,MT">(0802038601) Emerensiana Ngaga, ST,MT</option>
-                                      <option value="(0828128502) Natalia Magdalena R. Mamulak, ST.,MM">(0828128502) Natalia Magdalena R. Mamulak, ST.,MM</option>
-                                      <option value="(0823078702) Yulianti Paula Bria ST., MT">(0823078702) Yulianti Paula Bria ST., MT</option>
-                                      <option value="(0804126301) P. David Amfotis, SVD, B.Th., MA">(0804126301) P. David Amfotis, SVD, B.Th., MA</option>
-                                      <option value="(0805058803) Yovinia Carmeneja Hoar Siki, ST., MT">(0805058803) Yovinia Carmeneja Hoar Siki, ST., MT</option>
-                                      <option value="(0818098102) Ignatius P. A. N. Samane, S Si., M Eng">(0818098102) Ignatius P. A. N. Samane, S Si., M Eng</option>
-                                      <option value="(0807078704) Alfry A. J.Sinlae, S.Kom., M.Cs.">(0807078704) Alfry A. J.Sinlae, S.Kom., M.Cs.</option>
-                                    </select>
+                                    <input type="text" name="pembimbing_dua" class="form-control text-center" id="pembimbing_dua" placeholder="Pembimbing 2" required>
                                   </div>
                                   <div class="mb-3">
                                     <label for="penguji_satu" class="form-label">Penguji 1 <small class="text-danger">*</small></label>
-                                    <select name="penguji_satu" class="form-select" aria-label="Default select example" required>
-                                      <option selected value="">Pilih Penguji 1</option>
-                                      <option value="(0828126601) Donatus Joseph Manehat, S.Si, M.Kom">(0828126601) Donatus Joseph Manehat, S.Si, M.Kom</option>
-                                      <option value="(0824047701) Emiliana Metan Meolbatak, ST, MT">(0824047701) Emiliana Metan Meolbatak, ST, MT</option>
-                                      <option value="(0825126701) Emanuel Jando, S.Kom, MT">(0825126701) Emanuel Jando, S.Kom, MT</option>
-                                      <option value="(0829087901) Paulina Aliandu, ST, M.Cs.">(0829087901) Paulina Aliandu, ST, M.Cs.</option>
-                                      <option value="(0815037801) Patrisius Batarius, ST, MT.">(0815037801) Patrisius Batarius, ST, MT.</option>
-                                      <option value="(0723057201) Dr. Adri Gabriel Sooai, ST,MT">(0723057201) Dr. Adri Gabriel Sooai, ST,MT</option>
-                                      <option value="(0801118302) Frengky Tedy, ST, MT.">(0801118302) Frengky Tedy, ST, MT.</option>
-                                      <option value="(0807098502) Sisilia Daeng Bakka Mau, S.Kom, MT">(0807098502) Sisilia Daeng Bakka Mau, S.Kom, MT</option>
-                                      <option value="(0831038602) Paskalis Andrianus Nani, ST,MT">(0831038602) Paskalis Andrianus Nani, ST,MT</option>
-                                      <option value="(0802038601) Emerensiana Ngaga, ST,MT">(0802038601) Emerensiana Ngaga, ST,MT</option>
-                                      <option value="(0828128502) Natalia Magdalena R. Mamulak, ST.,MM">(0828128502) Natalia Magdalena R. Mamulak, ST.,MM</option>
-                                      <option value="(0823078702) Yulianti Paula Bria ST., MT">(0823078702) Yulianti Paula Bria ST., MT</option>
-                                      <option value="(0804126301) P. David Amfotis, SVD, B.Th., MA">(0804126301) P. David Amfotis, SVD, B.Th., MA</option>
-                                      <option value="(0805058803) Yovinia Carmeneja Hoar Siki, ST., MT">(0805058803) Yovinia Carmeneja Hoar Siki, ST., MT</option>
-                                      <option value="(0818098102) Ignatius P. A. N. Samane, S Si., M Eng">(0818098102) Ignatius P. A. N. Samane, S Si., M Eng</option>
-                                      <option value="(0807078704) Alfry A. J.Sinlae, S.Kom., M.Cs.">(0807078704) Alfry A. J.Sinlae, S.Kom., M.Cs.</option>
-                                    </select>
+                                    <input type="text" name="penguji_satu" class="form-control text-center" id="penguji_satu" placeholder="Penguji 1" required>
                                   </div>
                                   <div class="mb-3">
                                     <label for="penguji_dua" class="form-label">Penguji 2 <small class="text-danger">*</small></label>
-                                    <select name="penguji_dua" class="form-select" aria-label="Default select example" required>
-                                      <option selected value="">Pilih Penguji 2</option>
-                                      <option value="(0828126601) Donatus Joseph Manehat, S.Si, M.Kom">(0828126601) Donatus Joseph Manehat, S.Si, M.Kom</option>
-                                      <option value="(0824047701) Emiliana Metan Meolbatak, ST, MT">(0824047701) Emiliana Metan Meolbatak, ST, MT</option>
-                                      <option value="(0825126701) Emanuel Jando, S.Kom, MT">(0825126701) Emanuel Jando, S.Kom, MT</option>
-                                      <option value="(0829087901) Paulina Aliandu, ST, M.Cs.">(0829087901) Paulina Aliandu, ST, M.Cs.</option>
-                                      <option value="(0815037801) Patrisius Batarius, ST, MT.">(0815037801) Patrisius Batarius, ST, MT.</option>
-                                      <option value="(0723057201) Dr. Adri Gabriel Sooai, ST,MT">(0723057201) Dr. Adri Gabriel Sooai, ST,MT</option>
-                                      <option value="(0801118302) Frengky Tedy, ST, MT.">(0801118302) Frengky Tedy, ST, MT.</option>
-                                      <option value="(0807098502) Sisilia Daeng Bakka Mau, S.Kom, MT">(0807098502) Sisilia Daeng Bakka Mau, S.Kom, MT</option>
-                                      <option value="(0831038602) Paskalis Andrianus Nani, ST,MT">(0831038602) Paskalis Andrianus Nani, ST,MT</option>
-                                      <option value="(0802038601) Emerensiana Ngaga, ST,MT">(0802038601) Emerensiana Ngaga, ST,MT</option>
-                                      <option value="(0828128502) Natalia Magdalena R. Mamulak, ST.,MM">(0828128502) Natalia Magdalena R. Mamulak, ST.,MM</option>
-                                      <option value="(0823078702) Yulianti Paula Bria ST., MT">(0823078702) Yulianti Paula Bria ST., MT</option>
-                                      <option value="(0804126301) P. David Amfotis, SVD, B.Th., MA">(0804126301) P. David Amfotis, SVD, B.Th., MA</option>
-                                      <option value="(0805058803) Yovinia Carmeneja Hoar Siki, ST., MT">(0805058803) Yovinia Carmeneja Hoar Siki, ST., MT</option>
-                                      <option value="(0818098102) Ignatius P. A. N. Samane, S Si., M Eng">(0818098102) Ignatius P. A. N. Samane, S Si., M Eng</option>
-                                      <option value="(0807078704) Alfry A. J.Sinlae, S.Kom., M.Cs.">(0807078704) Alfry A. J.Sinlae, S.Kom., M.Cs.</option>
-                                    </select>
+                                    <input type="text" name="penguji_dua" class="form-control text-center" id="penguji_dua" placeholder="Penguji 2" required>
                                   </div>
                                   <div class="mb-3">
                                     <label for="tahun" class="form-label">Tahun Lulus <small class="text-danger">*</small></label>
@@ -259,7 +181,7 @@ $_SESSION["page-url"] = "klasifikasi";
                               <h4>Data Training</h4>
                               <hr>
                               <div class="table-responsive">
-                                <table class="table table-striped table-hover table-borderless table-sm display" id="datatable">
+                                <table class="table table-striped table-hover table-borderless table-sm display">
                                   <thead>
                                     <tr>
                                       <th scope="col" class="text-center">#</th>
@@ -269,7 +191,7 @@ $_SESSION["page-url"] = "klasifikasi";
                                       <th scope="col" class="text-center bg-success text-white">Kategori</th>
                                       <th scope="col" class="text-center bg-success text-white">Jenis Perangkat</th>
                                       <th scope="col" class="text-center bg-success text-white">Bahasa Pemrograman</th>
-                                      <th scope="col" class="text-center bg-warning text-dark">Kelas Klasifikasi</th>
+                                      <th scope="col" class="text-center bg-warning text-dark">Kelas</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -329,14 +251,14 @@ $_SESSION["page-url"] = "klasifikasi";
                                 }
 
                                 // Menampilkan data training setelah preprocessing
-                                echo "<h4>Preprocessing Data</h4><hr><div class='table-responsive'>";
+                                echo "<h4>Data Kriteria</h4><hr><div class='table-responsive'>";
                                 echo "<table class='table table-striped table-hover table-borderless table-sm'><thead>";
                                 echo "<tr>
                                   <th scope='col' class='text-center'>#</th>
                                   <th scope='col' class='text-center bg-success text-white'>Kategori</th>
                                   <th scope='col' class='text-center bg-success text-white'>Jenis Perangkat</th>
                                   <th scope='col' class='text-center bg-success text-white'>Bahasa Pemrograman</th>
-                                  <th scope='col' class='text-center bg-warning text-dark'>Kelas Klasifikasi</th>
+                                  <th scope='col' class='text-center bg-warning text-dark'>Kelas</th>
                                 </tr></thead><tbody>";
                                 $no = 1;
                                 foreach ($preprocessedData as $data) {
@@ -352,138 +274,83 @@ $_SESSION["page-url"] = "klasifikasi";
                               }
                             }
                             if ($_GET['to'] == 'probabilitas-kelas') {
-                              // ...
-
                               if (isset($_SESSION['data-klasifikasi'])) {
 
-                                $dataTraining = "SELECT * FROM training JOIN skripsi ON training.id_skripsi=skripsi.id_skripsi JOIN kelas ON training.id_kelas=kelas.id_kelas";
-                                $dataTraining_result = $conn->query($dataTraining);
+                                // Mengambil data dari tabel data latih
+                                $preprocessed = "SELECT * FROM training JOIN skripsi ON training.id_skripsi=skripsi.id_skripsi JOIN kelas ON training.id_kelas=kelas.id_kelas";
+                                $preprocessed_result = $conn->query($preprocessed);
 
                                 // Data training
-                                $dataTraining = array();
-                                if ($dataTraining_result->num_rows > 0) {
-                                  while ($dataTraining_row = $dataTraining_result->fetch_assoc()) {
-                                    $dataTraining[] = array(
-                                      'kategori' => $dataTraining_row['kategori'],
-                                      'jenis_perangkat' => $dataTraining_row['jenis_perangkat'],
-                                      'bahasa_pemrograman' => $dataTraining_row['bahasa_pemrograman'],
-                                      'kelas' => $dataTraining_row['kelas']
+                                $preprocessedData = array();
+                                if ($preprocessed_result->num_rows > 0) {
+                                  while ($preprocessed_row = $preprocessed_result->fetch_assoc()) {
+                                    $preprocessedData[] = array(
+                                      $preprocessed_row['kategori'], $preprocessed_row['jenis_perangkat'], $preprocessed_row['bahasa_pemrograman'], $preprocessed_row['kelas']
                                     );
                                   }
                                 }
 
-                                // Preprocessing data
-                                $preprocessedData = array();
+                                // Menghitung jumlah sampel dalam setiap kelas
+                                $totalSampel = count($preprocessedData);
+                                $kelasLayak = 0;
+                                $kelasTidakLayak = 0;
 
-                                foreach ($dataTraining as $data) {
-                                  // Mengubah teks menjadi huruf kecil
-                                  $data = array_map('strtolower', $data);
+                                foreach ($preprocessedData as $data) {
+                                  $kelas = $data[count($data) - 1]; // Kelas terakhir dalam data
 
-                                  // Membersihkan karakter-karakter khusus dan spasi
-                                  $data = array_map('trim', $data);
-
-                                  // Menambahkan data hasil preprocessing ke dalam array baru
-                                  $preprocessedData[] = $data;
+                                  if ($kelas == 'Soft') {
+                                    $kelasLayak++;
+                                  } elseif ($kelas == 'Mobile') {
+                                    $kelasTidakLayak++;
+                                  }
                                 }
 
                                 // Menghitung probabilitas kelas
-                                $countLayak = 0;
-                                $countTidakLayak = 0;
+                                $probabilitasLayak = $kelasLayak / $totalSampel;
+                                $probabilitasTidakLayak = $kelasTidakLayak / $totalSampel;
 
+                                echo "<strong>Probabilitas Kelas Soft:</strong> " . $probabilitasLayak . "<br>";
+                                echo "<strong>Probabilitas Kelas Mobile:</strong> " . $probabilitasTidakLayak . "<br></div></div>";
+
+                                // Menampilkan data
+                                echo "<div class='card border-0 rounded-0 shadow mt-3'><div class='card-body'><h4>Probabilitas Kelas</h4><hr><div class='table-responsive'>";
+                                echo "<table class='table table-striped table-hover table-borderless table-sm'><thead>";
+                                echo "<tr>
+                                  <th scope='col' class='text-center bg-success text-white'>Kategori</th>
+                                  <th scope='col' class='text-center bg-success text-white'>Jenis Perangkat</th>
+                                  <th scope='col' class='text-center bg-success text-white'>Bahasa Pemrograman</th>
+                                  <th scope='col' class='text-center bg-warning text-dark'>Kelas</th>
+                                </tr></thead><tbody>";
+                                $no = 1;
                                 foreach ($preprocessedData as $data) {
-                                  if ($data['kelas'] == 'soft computing') {
-                                    $countLayak++;
-                                  } elseif ($data['kelas'] == 'mobile computing') {
-                                    $countTidakLayak++;
-                                  }
-                                }
+                                  $kelas = $data[count($data) - 1]; // Kelas terakhir dalam data
 
-                                $totalData = count($preprocessedData);
-                                $probLayak = $countLayak / $totalData;
-                                $probTidakLayak = $countTidakLayak / $totalData;
-
-                                // Menampilkan hasil probabilitas kelas
-                                echo "<h4>Probabilitas Kelas</h4><hr>";
-                                echo "<table class='table table-striped table-hover table-borderless table-sm'>";
-                                echo "<thead><tr><th scope='col' class='text-center'>Kelas Klasifikasi</th>";
-                                echo "<th scope='col' class='text-center'>Jumlah</th>";
-                                echo "<th scope='col' class='text-center'>Probabilitas</th></tr></thead><tbody>";
-                                echo "<tr><td>Soft</td><td class='text-center'>$countLayak</td>";
-                                echo "<td class='text-center'>$probLayak</td></tr>";
-                                echo "<tr><td>Mobile</td><td class='text-center'>$countTidakLayak</td>";
-                                echo "<td class='text-center'>$probTidakLayak</td></tr>";
-                                echo "</tbody></table>";
-
-                                $fiturProbabilities = array();
-
-                                $fiturNames = array(
-                                  'kategori',
-                                  'jenis_perangkat',
-                                  'bahasa_pemrograman',
-                                  'kelas'
-                                );
-
-
-
-                                // Menampilkan hasil probabilitas setiap fitur
-                                // Counting the occurrences of each feature value
-                                $featureCounts = array();
-
-                                foreach ($fiturNames as $fitur) {
-                                  $featureCounts[$fitur] = array(
-                                    'soft' => array_count_values(array_column(array_filter($preprocessedData, function ($data) use ($fitur) {
-                                      return $data['kelas'] === 'soft computing';
-                                    }), $fitur)),
-                                    'mobile' => array_count_values(array_column(array_filter($preprocessedData, function ($data) use ($fitur) {
-                                      return $data['kelas'] === 'mobile computing';
-                                    }), $fitur))
-                                  );
-                                }
-
-                                echo "<h4>Jumlah Kemunculan Setiap Fitur</h4><hr>";
-                                echo "<table class='table table-striped table-hover table-borderless table-sm'>";
-                                echo "<thead><tr><th scope='col' class='text-center'>Fitur</th>";
-                                echo "<th scope='col' class='text-center'>Nilai</th>";
-                                echo "<th scope='col' class='text-center'>Soft</th>";
-                                echo "<th scope='col' class='text-center'>Mobile</th></tr></thead><tbody>";
-
-                                foreach ($fiturNames as $fitur) {
-                                  $uniqueValues = array_unique(array_merge(array_keys($featureCounts[$fitur]['soft']), array_keys($featureCounts[$fitur]['mobile'])));
-                                  $rowspan = count($uniqueValues);
-
-                                  echo "<tr><td rowspan='$rowspan'>$fitur</td>";
-
-                                  $firstRow = true;
-
-                                  foreach ($uniqueValues as $value) {
-                                    if (!$firstRow) {
-                                      echo "<tr>";
-                                    }
-                                    echo "<td>$value</td>";
-                                    echo "<td class='text-center'>" . ($featureCounts[$fitur]['soft'][$value] ?? 0) . "</td>";
-                                    echo "<td class='text-center'>" . ($featureCounts[$fitur]['mobile'][$value] ?? 0) . "</td>";
+                                  if ($kelas == 'Soft') {
+                                    echo "<tr>";
+                                    echo "<td class='text-center'>" . $data[0] . "</td>";
+                                    echo "<td class='text-center'>" . $data[1] . "</td>";
+                                    echo "<td class='text-center'>" . $data[2] . "</td>";
+                                    echo "<td class='text-center'>" . $data[3] . "</td>";
                                     echo "</tr>";
-                                    $firstRow = false;
                                   }
                                 }
+                                foreach ($preprocessedData as $data) {
+                                  $kelas = $data[count($data) - 1]; // Kelas terakhir dalam data
 
-                                echo "</tbody></table>";
+                                  if ($kelas == 'Mobile') {
+                                    echo "<tr>";
+                                    echo "<td class='text-center'>" . $data[0] . "</td>";
+                                    echo "<td class='text-center'>" . $data[1] . "</td>";
+                                    echo "<td class='text-center'>" . $data[2] . "</td>";
+                                    echo "<td class='text-center'>" . $data[3] . "</td>";
+                                    echo "</tr>";
+                                  }
+                                }
+                                echo "</table></div></div></div>";
                               }
                             }
                             if ($_GET['to'] == 'prediksi') {
                               if (isset($_SESSION['data-klasifikasi'])) {
-                                // Fungsi untuk preprocessing
-                                function preprocess($data)
-                                {
-                                  $data = strtolower($data); // Mengkonversi ke lowercase
-                                  $data = trim($data);
-
-                                  // Tambahkan langkah-langkah preprocessing lain yang diperlukan
-
-                                  return $data;
-                                }
-
-                                // Mengambil data dari sesi
                                 $nim = $_SESSION['data-klasifikasi']['nim'];
                                 $nama = $_SESSION['data-klasifikasi']['nama'];
                                 $judul = $_SESSION['data-klasifikasi']['judul'];
@@ -505,33 +372,14 @@ $_SESSION["page-url"] = "klasifikasi";
                                 $preprocessedData = array();
                                 if ($preprocessed_result->num_rows > 0) {
                                   while ($preprocessed_row = $preprocessed_result->fetch_assoc()) {
-                                    // Preprocessing pada data latih
-                                    $preprocessed_row['kategori'] = preprocess($preprocessed_row['kategori']);
-                                    $preprocessed_row['jenis_perangkat'] = preprocess($preprocessed_row['jenis_perangkat']);
-                                    $preprocessed_row['bahasa_pemrograman'] = preprocess($preprocessed_row['bahasa_pemrograman']);
-                                    $preprocessed_row['kelas'] = preprocess($preprocessed_row['kelas']);
-
                                     $preprocessedData[] = array(
-                                      'kategori' => $preprocessed_row['kategori'],
-                                      'jenis_perangkat' => $preprocessed_row['jenis_perangkat'],
-                                      'bahasa_pemrograman' => $preprocessed_row['bahasa_pemrograman'],
-                                      'kelas' => $preprocessed_row['kelas']
+                                      $preprocessed_row['kategori'], $preprocessed_row['jenis_perangkat'], $preprocessed_row['bahasa_pemrograman'], $preprocessed_row['kelas']
                                     );
                                   }
                                 }
 
-                                // Preprocessing pada data testing
-                                $kategori = preprocess($kategori);
-                                $jenis_perangkat = preprocess($jenis_perangkat);
-                                $bahasa_pemrograman = preprocess($bahasa_pemrograman);
-
                                 // Data testing
-                                $dataTesting = array(
-                                  'kategori' => $kategori,
-                                  'jenis_perangkat' => $jenis_perangkat,
-                                  'bahasa_pemrograman' => $bahasa_pemrograman,
-                                );
-
+                                $dataTesting = array($kategori, $jenis_perangkat, $bahasa_pemrograman);
 
                                 // Menghitung jumlah sampel dalam setiap kelas
                                 $totalSampel = count($preprocessedData);
@@ -539,39 +387,39 @@ $_SESSION["page-url"] = "klasifikasi";
                                 $kelasTidak = 0;
 
                                 foreach ($preprocessedData as $data) {
-                                  $kelas = $data['kelas'];
+                                  $kelas = $data[count($data) - 1]; // Kelas terakhir dalam data
 
-                                  if ($kelas == 'soft computing') {
+                                  if ($kelas == 'Soft') {
                                     $kelasYa++;
-                                  } elseif ($kelas == 'mobile computing') {
+                                  } elseif ($kelas == 'Mobile') {
                                     $kelasTidak++;
                                   }
                                 }
 
                                 // Menghitung probabilitas kelas
-                                $probabilitasYa = ($kelasYa + 1) / ($totalSampel + 2); // Laplace smoothing
-                                $probabilitasTidak = ($kelasTidak + 1) / ($totalSampel + 2);
+                                $probabilitasYa = $kelasYa / $totalSampel;
+                                $probabilitasTidak = $kelasTidak / $totalSampel;
 
                                 // Menghitung probabilitas fitur dalam setiap kelas
                                 $probabilitasFiturYa = array();
                                 $probabilitasFiturTidak = array();
 
                                 foreach ($preprocessedData as $data) {
-                                  $kelas = $data['kelas'];
+                                  $kelas = $data[count($data) - 1]; // Kelas terakhir dalam data
 
-                                  foreach ($data as $fitur => $value) {
-                                    if ($fitur != 'kelas') {
-                                      if ($kelas == 'soft computing') {
-                                        if (!isset($probabilitasFiturYa[$fitur][$value])) {
-                                          $probabilitasFiturYa[$fitur][$value] = 0;
-                                        }
-                                        $probabilitasFiturYa[$fitur][$value]++;
-                                      } elseif ($kelas == 'mobile computing') {
-                                        if (!isset($probabilitasFiturTidak[$fitur][$value])) {
-                                          $probabilitasFiturTidak[$fitur][$value] = 0;
-                                        }
-                                        $probabilitasFiturTidak[$fitur][$value]++;
+                                  for ($i = 0; $i < count($data) - 1; $i++) {
+                                    $fitur = $data[$i];
+
+                                    if ($kelas == 'Soft') {
+                                      if (!isset($probabilitasFiturYa[$fitur])) {
+                                        $probabilitasFiturYa[$fitur] = 0;
                                       }
+                                      $probabilitasFiturYa[$fitur]++;
+                                    } elseif ($kelas == 'Mobile') {
+                                      if (!isset($probabilitasFiturTidak[$fitur])) {
+                                        $probabilitasFiturTidak[$fitur] = 0;
+                                      }
+                                      $probabilitasFiturTidak[$fitur]++;
                                     }
                                   }
                                 }
@@ -579,71 +427,34 @@ $_SESSION["page-url"] = "klasifikasi";
                                 // Menghitung probabilitas gabungan untuk kelas Ya
                                 $probabilitasGabunganYa = $probabilitasYa;
 
-                                foreach ($dataTesting as $fitur => $value) {
-                                  if (isset($probabilitasFiturYa[$fitur][$value])) {
-                                    $probabilitasGabunganYa *= ($probabilitasFiturYa[$fitur][$value] + 1) / ($kelasYa + count($probabilitasFiturYa[$fitur]));
-                                  } else {
-                                    $probabilitasGabunganYa = 0;
+                                foreach ($dataTesting as $fitur) {
+                                  if (isset($probabilitasFiturYa[$fitur])) {
+                                    $probabilitasGabunganYa *= $probabilitasFiturYa[$fitur] / $kelasYa;
                                   }
                                 }
 
                                 // Menghitung probabilitas gabungan untuk kelas Tidak
                                 $probabilitasGabunganTidak = $probabilitasTidak;
 
-                                foreach ($dataTesting as $fitur => $value) {
-                                  if (isset($probabilitasFiturTidak[$fitur][$value])) {
-                                    $probabilitasGabunganTidak *= ($probabilitasFiturTidak[$fitur][$value] + 1) / ($kelasTidak + count($probabilitasFiturTidak[$fitur]));
-                                  } else {
-                                    $probabilitasGabunganYa = 0;
+                                foreach ($dataTesting as $fitur) {
+                                  if (isset($probabilitasFiturTidak[$fitur])) {
+                                    $probabilitasGabunganTidak *= $probabilitasFiturTidak[$fitur] / $kelasTidak;
                                   }
                                 }
 
-                                // Menampilkan hasil perhitungan
-                                echo "<h4>Hasil Perhitungan Probabilitas</h4><hr>";
-                                echo "<div class='table-responsive'><table class='table table-striped table-hover table-borderless table-sm'>";
-                                echo "<thead><tr><th scope='col'>Fitur</th>";
-                                echo "<th scope='col'>Nilai</th>";
-                                echo "<th scope='col'>Probabilitas Soft Computing</th>";
-                                echo "<th scope='col'>Probabilitas Mobile Computing</th></tr>";
+                                // Melakukan prediksi kelas
+                                $prediksiKelas = '';
 
-                                foreach ($dataTesting as $fitur => $value) {
-                                  echo "<tr>";
-                                  echo "<td>" . $fitur . "</td>";
-                                  echo "<td>" . $value . "</td>";
-
-                                  if (isset($probabilitasFiturYa[$fitur][$value])) {
-                                    $probabilitas = ($probabilitasFiturYa[$fitur][$value] + 1) / ($kelasYa + count($probabilitasFiturYa[$fitur]));
-                                    echo "<td>" . $probabilitas . "</td>";
-                                  } else {
-                                    $probabilitas = 0;
-                                    echo "<td>" . $probabilitas . "</td>";
-                                  }
-
-                                  if (isset($probabilitasFiturTidak[$fitur][$value])) {
-                                    $probabilitas = ($probabilitasFiturTidak[$fitur][$value] + 1) / ($kelasTidak + count($probabilitasFiturTidak[$fitur]));
-                                    echo "<td>" . $probabilitas . "</td>";
-                                  } else {
-                                    $probabilitas = 0;
-                                    echo "<td>" . $probabilitas . "</td>";
-                                  }
-
-                                  echo "</tr>";
-                                }
-
-                                echo "</tbody></table></div>";
-
-                                // Melakukan prediksi
                                 if ($probabilitasGabunganYa > $probabilitasGabunganTidak) {
                                   $id_kelas = 1;
-                                  $prediksi = "Soft Computing";
+                                  $prediksiKelas = 'Soft';
+                                  $prediksiNilai = $probabilitasGabunganYa;
                                 } else {
                                   $id_kelas = 2;
-                                  $prediksi = "Mobile Computing";
+                                  $prediksiKelas = 'Mobile';
+                                  $prediksiNilai = $probabilitasGabunganTidak;
                                 }
 
-                                // Menampilkan hasil prediksi
-                                echo "<h4 class='mt-5'> Hasil Prediksi</h4><hr>";
-                                echo "Berdasarkan hasil perhitungan probabilitas, data tersebut diprediksi sebagai: <strong>" . $prediksi . "</strong>";
 
                                 // Menampilkan hasil prediksi
                                 echo "<h4>Data Skripsi</h4><hr>";
@@ -706,7 +517,7 @@ $_SESSION["page-url"] = "klasifikasi";
                                 echo "</tr>";
                                 echo "<tr>";
                                 echo "</table></div></div></div>";
-                                echo "<div class='card border-0 rounded-0 shadow mt-3'><div class='card-body'><strong>Hasil Prediksi Kelas:</strong> " . $prediksi . "</div></div>";
+                                echo "<div class='card border-0 rounded-0 shadow mt-3'><div class='card-body'><strong>Hasil Prediksi Kelas:</strong> " . $prediksiKelas . "</div></div>";
 
                                 $checkSkripsi = mysqli_query($conn, "SELECT * FROM skripsi WHERE nim='$nim'");
                                 if (mysqli_num_rows($checkSkripsi) == 0) {
@@ -726,7 +537,7 @@ $_SESSION["page-url"] = "klasifikasi";
                                     $id_testing = 1;
                                   }
                                   mysqli_query($conn, "INSERT INTO testing(id_testing,id_skripsi,id_kelas) VALUES('$id_testing','$id_skripsi','$id_kelas')");
-                                  mysqli_query($conn, "INSERT INTO klasifikasi(id_testing,nilai_akhir) VALUES('$id_testing','$prediksi')");
+                                  mysqli_query($conn, "INSERT INTO klasifikasi(id_testing,nilai_akhir) VALUES('$id_testing','$prediksiNilai')");
                                 }
                               }
                             }

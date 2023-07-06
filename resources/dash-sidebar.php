@@ -14,9 +14,7 @@
           <span class="menu-title">Users</span>
         </a>
       </li>
-    <?php } ?>
-    <li class="nav-item nav-category">Data NBC</li>
-    <?php if ($_SESSION['data-user']['role'] == 1) { ?>
+      <li class="nav-item nav-category">Data NBC</li>
       <li class="nav-item">
         <a class="nav-link" style="cursor: pointer;" onclick="window.location.href='skripsi'">
           <i class="mdi mdi-file menu-icon"></i>

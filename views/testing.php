@@ -52,6 +52,7 @@ $_SESSION["page-url"] = "testing";
                           <th scope="col" class="text-center">NIM</th>
                           <th scope="col" class="text-center">Nama</th>
                           <th scope="col" class="text-center">Judul</th>
+                          <th scope="col" class="text-center">Skipsi</th>
                           <th scope="col" class="text-center">Kategori</th>
                           <th scope="col" class="text-center">Jenis Perangkat</th>
                           <th scope="col" class="text-center">Bhs. Pemrograman</th>
@@ -67,6 +68,24 @@ $_SESSION["page-url"] = "testing";
                               <td><?= $row["nim"] ?></td>
                               <td><?= $row["nama"] ?></td>
                               <td><?= $row["judul"] ?></td>
+                              <td>
+                                <button type="button" class="btn btn-primary btn-sm text-white rounded-0 border-0" style="height: 30px;" data-bs-toggle="modal" data-bs-target="#abstrak<?= $row["id_skripsi"] ?>">
+                                  <i class="mdi mdi-eye"></i> Lihat
+                                </button>
+                                <div class="modal fade" id="abstrak<?= $row["id_skripsi"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                      <div class="modal-header border-bottom-0 shadow">
+                                        <h5 class="modal-title" id="exampleModalLabel">Abstrak <?= $row["nama_mahasiswa"] ?></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body text-center">
+                                        <textarea class="form-control border-0 rounded-0 p-0" id="exampleFormControlTextarea1" style="height: 300px;line-height: 20px;" rows="3"><?= $row['abstrak'] ?></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
                               <td><?= $row["kategori"] ?></td>
                               <td><?= $row["jenis_perangkat"] ?></td>
                               <td><?= $row["bahasa_pemrograman"] ?></td>

@@ -9,7 +9,7 @@
       <div class="card border-0 rounded-0">
         <div class="card-body">
           <h3>Pengelompokan Topik Skripsi Mahasiswa Ilmu Komputer UNWIRA (Metode Naive Bayes Classifier)</h3>
-          <p>Sistem ini bertujuan untuk mengelompokan topik skripsi berdasarkan abstrak dengan menggunakan Metode Naive Bayes Classifier. Dengan adanya aplikasi ini diharapkan mampu membantu pegawai dan mahasiswa dalam pengarsipan dan pengelompokan skripsi, sehingga mahasiswa tidak kesulitan dalam mencari rujukan dan referensi yang terkait dengan penelitiannya.</p>
+          <p>Sistem ini bertujuan untuk mengelompokan topik skripsi berdasarkan judul dengan menggunakan Metode Naive Bayes Classifier. Dengan adanya aplikasi ini diharapkan mampu membantu pegawai dan mahasiswa dalam pengarsipan dan pengelompokan skripsi, sehingga mahasiswa tidak kesulitan dalam mencari rujukan dan referensi yang terkait dengan penelitiannya.</p>
         </div>
       </div>
     </div>
