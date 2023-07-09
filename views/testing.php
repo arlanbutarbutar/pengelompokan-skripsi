@@ -109,7 +109,7 @@ $_SESSION["page-url"] = "testing";
                                         <div class="modal-footer justify-content-center border-top-0">
                                           <button type="button" class="btn btn-secondary btn-sm rounded-0 border-0" style="height: 30px;" data-bs-dismiss="modal">Batal</button>
                                           <form action="" method="POST">
-                                            <input type="hidden" name="id_testing" value="<?= $row["id_testing"] ?>">
+                                            <input type="hidden" name="id_skripsi" value="<?= $row["id_skripsi"] ?>">
                                             <button type="submit" name="hapus-testing" class="btn btn-danger btn-sm rounded-0 text-white border-0" style="height: 30px;">Hapus</button>
                                           </form>
                                         </div>

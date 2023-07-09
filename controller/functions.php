@@ -243,8 +243,8 @@ if (isset($_SESSION["data-user"])) {
   function delete_testing($data)
   {
     global $conn;
-    $id_testing = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id_testing']))));
-    mysqli_query($conn, "DELETE FROM testing WHERE id_testing='$id_testing'");
+    $id_skripsi = htmlspecialchars(addslashes(trim(mysqli_real_escape_string($conn, $data['id_skripsi']))));
+    mysqli_query($conn, "DELETE FROM skripsi WHERE id_skripsi='$id_skripsi'");
     return mysqli_affected_rows($conn);
   }
 }
