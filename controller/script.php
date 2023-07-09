@@ -25,7 +25,7 @@ if (isset($_SESSION["time-message"])) {
   }
 }
 
-$baseURL = "http://$_SERVER[HTTP_HOST]/apps/pengelompokan-skripsi/";
+$baseURL = "https://$_SERVER[HTTP_HOST]/";
 
 if (!isset($_SESSION["data-user"])) {
   if (isset($_POST["masuk"])) {
@@ -183,6 +183,7 @@ if (isset($_SESSION["data-user"])) {
   }
 
   $dataTraining = mysqli_query($conn, "SELECT skripsi.*, kelas.kelas FROM skripsi JOIN training ON skripsi.id_skripsi=training.id_skripsi JOIN kelas ON training.id_kelas=kelas.id_kelas");
+  $dataTesting = mysqli_query($conn, "SELECT skripsi.*, kelas.kelas FROM skripsi JOIN testing ON skripsi.id_skripsi=testing.id_skripsi JOIN kelas ON testing.id_kelas=kelas.id_kelas");
   $dataTesting = mysqli_query($conn, "SELECT skripsi.*, kelas.kelas, testing.id_testing FROM skripsi JOIN testing ON skripsi.id_skripsi=testing.id_skripsi JOIN kelas ON testing.id_kelas=kelas.id_kelas");
   if (isset($_POST["hapus-testing"])) {
     if (delete_testing($_POST) > 0) {

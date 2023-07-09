@@ -431,10 +431,10 @@ $_SESSION["page-url"] = "klasifikasi";
 
                                 foreach ($fiturNames as $fitur) {
                                   $featureCounts[$fitur] = array(
-                                    'soft' => array_count_values(array_column(array_filter($preprocessedData, function ($data) use ($fitur) {
+                                    'soft computing' => array_count_values(array_column(array_filter($preprocessedData, function ($data) use ($fitur) {
                                       return $data['kelas'] === 'soft computing';
                                     }), $fitur)),
-                                    'mobile' => array_count_values(array_column(array_filter($preprocessedData, function ($data) use ($fitur) {
+                                    'mobile computing' => array_count_values(array_column(array_filter($preprocessedData, function ($data) use ($fitur) {
                                       return $data['kelas'] === 'mobile computing';
                                     }), $fitur))
                                   );
@@ -444,11 +444,11 @@ $_SESSION["page-url"] = "klasifikasi";
                                 echo "<table class='table table-striped table-hover table-borderless table-sm'>";
                                 echo "<thead><tr><th scope='col' class='text-center'>Fitur</th>";
                                 echo "<th scope='col' class='text-center'>Nilai</th>";
-                                echo "<th scope='col' class='text-center'>Soft</th>";
-                                echo "<th scope='col' class='text-center'>Mobile</th></tr></thead><tbody>";
+                                echo "<th scope='col' class='text-center'>Soft Computing</th>";
+                                echo "<th scope='col' class='text-center'>Mobile Computing</th></tr></thead><tbody>";
 
                                 foreach ($fiturNames as $fitur) {
-                                  $uniqueValues = array_unique(array_merge(array_keys($featureCounts[$fitur]['soft']), array_keys($featureCounts[$fitur]['mobile'])));
+                                  $uniqueValues = array_unique(array_merge(array_keys($featureCounts[$fitur]['soft computing']), array_keys($featureCounts[$fitur]['mobile computing'])));
                                   $rowspan = count($uniqueValues);
 
                                   echo "<tr><td rowspan='$rowspan'>$fitur</td>";
@@ -460,8 +460,8 @@ $_SESSION["page-url"] = "klasifikasi";
                                       echo "<tr>";
                                     }
                                     echo "<td>$value</td>";
-                                    echo "<td class='text-center'>" . ($featureCounts[$fitur]['soft'][$value] ?? 0) . "</td>";
-                                    echo "<td class='text-center'>" . ($featureCounts[$fitur]['mobile'][$value] ?? 0) . "</td>";
+                                    echo "<td class='text-center'>" . ($featureCounts[$fitur]['soft computing'][$value] ?? 0) . "</td>";
+                                    echo "<td class='text-center'>" . ($featureCounts[$fitur]['mobile computing'][$value] ?? 0) . "</td>";
                                     echo "</tr>";
                                     $firstRow = false;
                                   }
@@ -552,6 +552,8 @@ $_SESSION["page-url"] = "klasifikasi";
                                 $probabilitasYa = ($kelasYa + 1) / ($totalSampel + 2); // Laplace smoothing
                                 $probabilitasTidak = ($kelasTidak + 1) / ($totalSampel + 2);
 
+
+
                                 // Menghitung probabilitas fitur dalam setiap kelas
                                 $probabilitasFiturYa = array();
                                 $probabilitasFiturTidak = array();
@@ -576,26 +578,19 @@ $_SESSION["page-url"] = "klasifikasi";
                                   }
                                 }
 
-                                // Menghitung probabilitas gabungan untuk kelas Ya
-                                $probabilitasGabunganYa = $probabilitasYa;
+                                // Menghitung probabilitas gabungan untuk kelas Ya dan mengalikan nilai-nilai tersebut
+                                $probabilitasGabunganYa = 1; // Inisialisasi variabel untuk hasil gabungan
 
                                 foreach ($dataTesting as $fitur => $value) {
-                                  if (isset($probabilitasFiturYa[$fitur][$value])) {
-                                    $probabilitasGabunganYa *= ($probabilitasFiturYa[$fitur][$value] + 1) / ($kelasYa + count($probabilitasFiturYa[$fitur]));
-                                  } else {
-                                    $probabilitasGabunganYa = 0;
-                                  }
+                                  $p = $probabilitasFiturYa[$fitur][$value] / $kelasYa;
+                                  $probabilitasGabunganYa *= $p; // Mengalikan nilai $p dengan hasil gabungan sebelumnya
                                 }
 
-                                // Menghitung probabilitas gabungan untuk kelas Tidak
-                                $probabilitasGabunganTidak = $probabilitasTidak;
+                                $probabilitasGabunganTidak = 1; // Inisialisasi variabel untuk hasil gabungan tersebut
 
                                 foreach ($dataTesting as $fitur => $value) {
-                                  if (isset($probabilitasFiturTidak[$fitur][$value])) {
-                                    $probabilitasGabunganTidak *= ($probabilitasFiturTidak[$fitur][$value] + 1) / ($kelasTidak + count($probabilitasFiturTidak[$fitur]));
-                                  } else {
-                                    $probabilitasGabunganYa = 0;
-                                  }
+                                  $p = $probabilitasFiturTidak[$fitur][$value] / $kelasTidak;
+                                  $probabilitasGabunganTidak *= $p; // Mengalikan nilai $p dengan hasil gabungan sebelumnya
                                 }
 
                                 // Menampilkan hasil perhitungan
@@ -612,7 +607,8 @@ $_SESSION["page-url"] = "klasifikasi";
                                   echo "<td>" . $value . "</td>";
 
                                   if (isset($probabilitasFiturYa[$fitur][$value])) {
-                                    $probabilitas = ($probabilitasFiturYa[$fitur][$value] + 1) / ($kelasYa + count($probabilitasFiturYa[$fitur]));
+                                    $probabilitas = $probabilitasFiturYa[$fitur][$value] / $kelasYa;
+
                                     echo "<td>" . $probabilitas . "</td>";
                                   } else {
                                     $probabilitas = 0;
@@ -620,7 +616,7 @@ $_SESSION["page-url"] = "klasifikasi";
                                   }
 
                                   if (isset($probabilitasFiturTidak[$fitur][$value])) {
-                                    $probabilitas = ($probabilitasFiturTidak[$fitur][$value] + 1) / ($kelasTidak + count($probabilitasFiturTidak[$fitur]));
+                                    $probabilitas = $probabilitasFiturTidak[$fitur][$value] / $kelasTidak;
                                     echo "<td>" . $probabilitas . "</td>";
                                   } else {
                                     $probabilitas = 0;
@@ -632,7 +628,11 @@ $_SESSION["page-url"] = "klasifikasi";
 
                                 echo "</tbody></table></div>";
 
+                                echo "Hasil probabilitas gabungan untuk kelas Soft Computing: " . $probabilitasGabunganYa . "<br>";
+                                echo "Hasil probabilitas gabungan untuk kelas Mobile Computing: " . $probabilitasGabunganTidak;
+
                                 // Melakukan prediksi
+
                                 if ($probabilitasGabunganYa > $probabilitasGabunganTidak) {
                                   $id_kelas = 1;
                                   $prediksi = "Soft Computing";

@@ -15,7 +15,7 @@ function smtp_mail($to, $subject, $message, $from_name, $from, $cc, $bcc, $debug
     $mail->Username         = 'no-reply@tugasakhir.my.id';
     $mail->Password         = 'Itha040700_';
     $default_email_from     = 'no-reply@tugasakhir.my.id';
-    $default_email_from_name = 'Pengelompokan Skripsi';
+    $default_email_from_name = 'Pengelompokan Skripsi - Metode NBC';
     if (empty($from)) $mail->From = $default_email_from;
     else $mail->From = $from;
     if (empty($from_name)) $mail->FromName = $default_email_from_name;
